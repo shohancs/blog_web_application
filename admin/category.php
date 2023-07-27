@@ -106,6 +106,7 @@
 	    <div class="modal-content">
 
 	      <div class="modal-header">
+	      	
 	        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span> Trash folder!!</h1>
 
 	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
