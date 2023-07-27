@@ -374,7 +374,7 @@
 												  		$p_id 	= $row['cat_id'];
 												  		$p_name = $row['cat_name'];
 												  		?>
-					  									<option value="<?php echo $p_id; ?>"><?php echo $p_name; ?></option>
+															<option value="<?php echo $p_id; ?>" <?php if($p_id == $is_parent){echo "selected";} ?>><?php echo $p_name; ?></option>
 												  		<?php
 												  	} 
 												  ?>												  
@@ -400,9 +400,10 @@
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
-													<input type="submit" name="addCategory" class="btn btn-primary">
+													<input type="hidden" name="updateCategoryId" value="<?php echo $cat_id; ?>">
+													<input type="submit" name="updateCategory" class="btn btn-primary">
 												</div>
-											</div>											
+											</div>										
 										</div>
 									</div>
 								</form>
@@ -414,7 +415,48 @@
 					}
 
 					else if ( $do == "Update" ) {
+						if (isset($_POST['updateUser'])) {
+							$updateUserId 	= mysqli_real_escape_string($db, $_POST['updateUserId']);
+							$fullname 		= mysqli_real_escape_string($db, $_POST['fullname']);
+							$email 			= mysqli_real_escape_string($db, $_POST['email']);
+							$password 		= mysqli_real_escape_string($db, $_POST['password']);
+							$re_password 	= mysqli_real_escape_string($db, $_POST['re_password']);
+							$phone 			= mysqli_real_escape_string($db, $_POST['phone']);
+							$address 		= mysqli_real_escape_string($db, $_POST['address']);
+							$role 			= mysqli_real_escape_string($db, $_POST['role']);
+							$status 		= mysqli_real_escape_string($db, $_POST['status']);
 
+							// With Password
+							if (!empty($password)) {
+								if ($password == $re_password) {
+									$hassedPass = sha1($password);
+
+								$updateUserSql = "UPDATE users SET fullname='$fullname', email='$email', password='$hassedPass', phone='$phone', address='$address', role='$role', status='$status' WHERE user_id='$updateUserId' ";
+								$updateUserQuery = mysqli_query($db, $updateUserSql);
+
+								if ($updateUserQuery) {
+									header("Location: users.php?do=Manage");
+								}
+								else {
+									die("mysqli Error!" . mysqli_error($db));
+								}
+
+								}
+							}
+
+							// Without Password
+							else {
+								$updateUserSql = "UPDATE users SET fullname='$fullname', email='$email', password='$hassedPass', phone='$phone', address='$address', role='$role', status='$status' WHERE user_id='$updateUserId' ";
+								$updateUserQuery = mysqli_query($db, $updateUserSql);
+
+								if ($updateUserQuery) {
+									header("Location: users.php?do=Manage");
+								}
+								else {
+									die("mysqli Error!" . mysqli_error($db));
+								}
+							}
+						}
 					}
 
 					else if ( $do == "ManageTrash" ) { ?>
