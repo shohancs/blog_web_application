@@ -46,7 +46,7 @@
 
 										<tbody>
 											<?php  
-												$manage_sql = "SELECT * FROM category WHERE status=1 ORDER BY cat_name ASC";
+												$manage_sql = "SELECT * FROM category WHERE is_parent=0 AND status=1 ORDER BY cat_name ASC";
 												$manage_query = mysqli_query($db, $manage_sql);
 												$countData = mysqli_num_rows($manage_query);
 
@@ -70,7 +70,13 @@
 													      <th scope="row"><?php echo $i; ?></th>
 													      <td><?php echo $cat_name; ?></td>
 													      <td><?php echo $cat_desc; ?></td>
-													      <td><?php echo $is_parent; ?></td>
+													      <td>
+													      	<?php  
+																if ($is_parent == 0) { ?>
+																	<span class="badge text-bg-primary">Parent Category</span>
+																<?php }
+															?>
+													      </td>
 													      <td>
 													      	<?php  
 																if ($status == 1) { ?>
@@ -119,7 +125,90 @@
 																<!-- Modal End -->
 															</td>
 													    </tr>
-													<?php }
+													<?php 
+
+													// Ek loper modde 2 loop chalaitaci
+													// To Check the Sub Category
+													$child_sql = "SELECT * FROM category WHERE is_parent='$cat_id' AND status=1 ORDER BY cat_name ASC";
+													$child_query = mysqli_query($db, $child_sql);
+
+													while($row = mysqli_fetch_assoc($child_query)) {
+														$cat_id 	= $row['cat_id'];
+														$cat_name 	= $row['cat_name'];
+														$cat_desc 	= $row['cat_desc'];
+														$is_parent 	= $row['is_parent'];
+														$status 	= $row['status'];
+														$i++;
+														?>
+															<tr>
+													      <th scope="row"><?php echo $i; ?></th>
+													      <td> -- <?php echo $cat_name; ?></td>
+													      <td><?php echo $cat_desc; ?></td>
+													      <td>
+													      	<?php  
+																if ($is_parent == 0) { ?>
+																	<span class="badge text-bg-primary">Parent Category</span>
+																<?php }
+																else {
+																	echo "Child category";
+																}
+															?>
+													      </td>
+													      <td>
+													      	<?php  
+																if ($status == 1) { ?>
+																	<span class="badge text-bg-success">Active</span>
+																<?php }
+																else if ($status == 0) { ?>
+																	<span class="badge text-bg-danger">InActive</span>
+																<?php }
+															?>
+													      </td>
+															<td>
+																<div class="action-btn">
+																  <ul>
+																    <li>
+																      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
+																    </li>
+																    <li>
+																      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
+																    </li>
+																  </ul>
+																</div>
+
+																<!-- Modal Start -->
+																<!-- ########## START: MODAL PART ########## -->
+																<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog">
+																    <div class="modal-content">
+
+																      <div class="modal-header">
+																        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span> Trash folder!!</h1>
+
+																        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																      </div>
+
+																      <div class="modal-body">
+																        <div class="modal-btn">
+																          <a href="category.php?do=Trash&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Trash</a>
+																          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
+																        </div>
+																      </div>
+
+																    </div>
+																  </div>
+																</div>
+																<!-- ########## END: MODAL PART ########## -->
+																<!-- Modal End -->
+															</td>
+													    </tr>
+
+														<?php
+													}//Second while loop
+
+												}//first while loop
+
+
 
 												}												
 											?>
@@ -164,10 +253,21 @@
 											</div>
 
 											<div class="mb-3">
-												<label for="">Select the Parent Category [If Any]</label>
+												<label for="">Select the Parent Category [ If Any ]</label>
 												<select class="form-select" name="is_parent" aria-label="">
-												  <option value="">Please Select the Parent Category</option>
-												  <option value="">***********</option>
+												  <option>Please Select the Parent Category</option>
+												  <?php  
+												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1 ORDER BY cat_name ASC";
+												  	$p_query = mysqli_query($db, $sql);
+
+												  	while( $row = mysqli_fetch_assoc($p_query) ) {
+												  		$p_id 	= $row['cat_id'];
+												  		$p_name = $row['cat_name'];
+												  		?>
+					  									<option value="<?php echo $p_id; ?>"><?php echo $p_name; ?></option>
+												  		<?php
+												  	} 
+												  ?>												  
 												</select>
 											</div>
 
@@ -368,7 +468,13 @@
 													      <th scope="row"><?php echo $i; ?></th>
 													      <td><?php echo $cat_name; ?></td>
 													      <td><?php echo $cat_desc; ?></td>
-													      <td><?php echo $is_parent; ?></td>
+													      <td>
+													      	<?php  
+																if ($is_parent == 0) { ?>
+																	<span class="badge text-bg-primary">Parent</span>
+																<?php }
+															?>
+													      </td>
 													      <td>
 													      	<?php  
 																if ($status == 1) { ?>
@@ -379,43 +485,43 @@
 																<?php }
 															?>
 													      </td>
-<td>
-	<div class="action-btn">
-	  <ul>
-	    <li>
-	      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
-	    </li>
-	    <li>
-	      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
-	    </li>
-	  </ul>
-	</div>
+															<td>
+																<div class="action-btn">
+																  <ul>
+																    <li>
+																      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
+																    </li>
+																    <li>
+																      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
+																    </li>
+																  </ul>
+																</div>
 
-	<!-- Modal Start -->
-	<!-- ########## START: MODAL PART ########## -->
-	<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	  <div class="modal-dialog">
-	    <div class="modal-content">
+																<!-- Modal Start -->
+																<!-- ########## START: MODAL PART ########## -->
+																<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+																  <div class="modal-dialog">
+																    <div class="modal-content">
 
-	      <div class="modal-header">
-	        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Delete!! <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span></h1>
+																      <div class="modal-header">
+																        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Delete <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span></h1>
 
-	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-	      </div>
+																        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+																      </div>
 
-	      <div class="modal-body">
-	        <div class="modal-btn">
-	          <a href="category.php?do=Delete&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Delete</a>
-	          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
-	        </div>
-	      </div>
+																      <div class="modal-body">
+																        <div class="modal-btn">
+																          <a href="category.php?do=Delete&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Delete</a>
+																          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
+																        </div>
+																      </div>
 
-	    </div>
-	  </div>
-	</div>
-	<!-- ########## END: MODAL PART ########## -->
-	<!-- Modal End -->
-</td>
+																    </div>
+																  </div>
+																</div>
+																<!-- ########## END: MODAL PART ########## -->
+																<!-- Modal End -->
+															</td>
 													    </tr>
 													<?php }
 
