@@ -46,7 +46,7 @@
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>
 						</div>
-						<div class="menu-title">Category Management</div>
+						<div class="menu-title">Category</div>
 					</a>
 					<ul>
 						<li> <a href="category.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add Category</a>

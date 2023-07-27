@@ -8,7 +8,7 @@
 				<?php  
 					$do = isset($_GET['do']) ? $_GET['do'] : "Manage";
 
-					if ($do == "Manage" ) { ?>
+					if ( $do == "Manage" ) { ?>
 
 						<!-- Top Icon -->
 						<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -36,36 +36,71 @@
 										<thead class="table-dark">
 											<tr>
 												<th>Sl.</th>
-												<th>Image</th>
-												<th>Name</th>
-												<th>Email</th>
-												<th>Phone No.</th>
-												<th>Address</th>
-												<th>Role</th>
+												<th>Cat_Name</th>
+												<th>Description</th>
+												<th>parent/sub Category</th>
 												<th>Status</th>
-												<th>Join Date</th>
 												<th>Action</th>
 											</tr>
 										</thead>
 
 										<tbody>
-										    <tr>
-										      <th scope="row">1</th>
-										      <td>Mark</td>
-										      <td>Otto</td>
-										      <td>@mdo</td>
-										    </tr>
-										    <tr>
-										      <th scope="row">2</th>
-										      <td>Jacob</td>
-										      <td>Thornton</td>
-										      <td>@fat</td>
-										    </tr>
-										    <tr>
-										      <th scope="row">3</th>
-										      <td colspan="2">Larry the Bird</td>
-										      <td>@twitter</td>
-										    </tr>
+											<?php  
+												$manage_sql = "SELECT * FROM category ORDER BY cat_name ASC";
+												$manage_query = mysqli_query($db, $manage_sql);
+												$countData = mysqli_num_rows($manage_query);
+
+												if ($countData == 0) { ?>
+													<div class="alert alert-warning" role="alert">
+													  Sorry! No Data Found into the Database!
+													</div>
+												<?php }
+												else {
+													$i = 0;
+
+													while($row = mysqli_fetch_assoc($manage_query)) {
+														$cat_id 	= $row['cat_id'];
+														$cat_name 	= $row['cat_name'];
+														$cat_desc 	= $row['cat_desc'];
+														$is_parent 	= $row['is_parent'];
+														$status 	= $row['status'];
+														$i++;
+														?>
+														<tr>
+													      <th scope="row"><?php echo $i; ?></th>
+													      <td><?php echo $cat_name; ?></td>
+													      <td><?php echo $cat_desc; ?></td>
+													      <td><?php echo $is_parent; ?></td>
+													      <td>
+													      	<?php  
+																if ($status == 1) { ?>
+																	<span class="badge text-bg-success">Active</span>
+																<?php }
+																else if ($status == 0) { ?>
+																	<span class="badge text-bg-danger">InActive</span>
+																<?php }
+															?>
+													      </td>
+													      <td>
+													      	<div class="action-btn">
+															  <ul>
+															    <li>
+															      <a href=""><i class="fa-regular fa-pen-to-square edit"></i></a>
+															    </li>
+															    <li>
+															      <a href=""><i class="fa-regular fa-trash-can trush"></i></a>
+															    </li>
+															  </ul>
+															</div>
+															<!-- Modal Start -->
+															<!-- Modal End -->
+													      </td>
+													    </tr>
+													<?php }
+
+												}												
+											?>
+										    
 										</tbody>
 									</table>
 								</div>
@@ -75,6 +110,30 @@
 						<!-- ########## END: MAIN TABLE ########## -->
 						
 					<?php }
+
+					else if ( $do == "Add" ) {
+
+					}
+
+					else if ( $do == "Store" ) {
+
+					}
+
+					else if ( $do == "Edit" ) {
+
+					}
+
+					else if ( $do == "Update" ) {
+
+					}
+
+					else if ( $do == "ManageTrash" ) {
+
+					}
+
+					else if ( $do == "Delete" ) {
+
+					}
 				?>
 
 			</div>
