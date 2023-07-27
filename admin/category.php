@@ -254,73 +254,44 @@
 						<!-- ########## START: MAIN BODY ########## -->
 						<div class="card">
 							<div class="card-body">
-								<form action="users.php?do=Update" method="POST" enctype="multipart/form-data">
+								<form action="category.php?do=Update" method="POST" enctype="multipart/form-data">
 									<div class="row">
-										<div class="col-lg-4">
+										<div class="col-lg-6">
 											<div class="mb-3">
-												<label for="">Full Name</label>
-												<input type="text" name="fullname" class="form-control" required autocomplete="off" autofocus placeholder="full name.." value="<?php echo $fullname; ?>">
+												<label for="">Category Name</label>
+												<input type="text" name="catName" class="form-control" required autocomplete="off" autofocus value="<?php echo $cat_name; ?>" >
 											</div>
 
 											<div class="mb-3">
-												<label for="">Email Address</label>
-												<input type="email" name="email" class="form-control" required autocomplete="off" autofocus placeholder="email address.." value="<?php echo $email; ?>">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Password</label>
-												<input type="password" name="password" class="form-control" autocomplete="off" autofocus placeholder="*******">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Re-type Password</label>
-												<input type="password" name="re_password" class="form-control" autocomplete="off" autofocus placeholder="*******">
-											</div>
-										</div>
-
-										<div class="col-lg-4">
-											<div class="mb-3">
-												<label for="">Phone No.</label>
-												<input type="tel" name="phone" class="form-control" required autocomplete="off" autofocus  placeholder="phone no.." value="<?php echo $phone; ?>">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Address</label>
-												<textarea name="address" class="form-control" autocomplete="off" autofocus cols="30" rows="7"  placeholder="address.."><?php echo $address; ?></textarea>
-											</div>
-
-											
-										</div>
-										<div class="col-lg-4">
-											<div class="mb-3">
-												<label for="">Role</label>
-												<select class="form-select" name="role" aria-label="">
-												  <option>Please Select the User Role</option>
-												  <option value="1" <?php if ($role == 1) { echo "selected"; } ?>>Admin</option>
-												  <option value="2" <?php if ($role == 2) { echo "selected"; } ?>>User</option>
+												<label for="">Select the Parent Category [If Any]</label>
+												<select class="form-select" name="is_parent" aria-label="">
+												  <option value="">Please Select the Parent Category</option>
+												  <option value="">***********</option>
 												</select>
 											</div>
 
 											<div class="mb-3">
 												<label for="">Status</label>
 												<select class="form-select" name="status" aria-label="">
-												  <option value="1">Please Select the User Status</option>
-												  <option value="1" <?php if ($status == 1) { echo "selected"; } ?>>Active</option>
-												  <option value="0" <?php if ($status == 0) { echo "selected"; } ?>>InActive</option>
+												  <option value="">Please Select the User Status</option>
+												  <option value="1" <?php if( $status == 1 ) { echo "selected"; } ?>>Active</option>
+												  <option value="0" <?php if( $status == 0 ) { echo "selected"; } ?>>InActive</option>
 												</select>
-											</div>
+											</div>											
+										</div>
+
+										<div class="col-lg-6">
 
 											<div class="mb-3">
-												<label for="">Image</label>
-												<input type="file" name="image" class="form-control" >
+												<label for="">Category Description</label>
+												<textarea name="cat_desc" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="category description.."><?php echo $cat_desc; ?></textarea>
 											</div>
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
-													<input type="hidden" name="updateUserId" value="<?php echo $user_id; ?>">
-													<input type="submit" name="updateUser" class="btn btn-primary">
+													<input type="submit" name="addCategory" class="btn btn-primary">
 												</div>
-											</div>
+											</div>											
 										</div>
 									</div>
 								</form>
