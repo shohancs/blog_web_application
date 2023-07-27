@@ -363,10 +363,21 @@
 											</div>
 
 											<div class="mb-3">
-												<label for="">Select the Parent Category [If Any]</label>
+												<label for="">Select the Parent Category [ If Any ]</label>
 												<select class="form-select" name="is_parent" aria-label="">
-												  <option value="">Please Select the Parent Category</option>
-												  <option value="">***********</option>
+												  <option>Please Select the Parent Category</option>
+												  <?php  
+												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1 ORDER BY cat_name ASC";
+												  	$p_query = mysqli_query($db, $sql);
+
+												  	while( $row = mysqli_fetch_assoc($p_query) ) {
+												  		$p_id 	= $row['cat_id'];
+												  		$p_name = $row['cat_name'];
+												  		?>
+					  									<option value="<?php echo $p_id; ?>"><?php echo $p_name; ?></option>
+												  		<?php
+												  	} 
+												  ?>												  
 												</select>
 											</div>
 
