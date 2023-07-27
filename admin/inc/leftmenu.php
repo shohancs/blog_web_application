@@ -21,7 +21,8 @@
 				</li>
 
 
-				<li class="menu-label">Library Management</li>
+				<!-- ######### START: ROLE MANAGEMENT #########  -->
+				<li class="menu-label">Role Management</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>
@@ -34,10 +35,29 @@
 						<li> <a href="users.php?do=Manage"><i class="bx bx-right-arrow-alt"></i>Manage User</a>
 						</li>
 						<li> <a href="users.php?do=ManageTrash"><i class="bx bx-right-arrow-alt"></i>Trash User</a>
-						</li>
-						
+						</li>						
 					</ul>
-				</li>
+				</li>				
+				<!-- ######### START: ROLE MANAGEMENT #########  -->
+
+				<!-- ######### START: BLOG MANAGEMENT #########  -->
+				<li class="menu-label">Blog Portal</li>
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-category"></i>
+						</div>
+						<div class="menu-title">Category Management</div>
+					</a>
+					<ul>
+						<li> <a href="category.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
+						</li>
+						<li> <a href="category.php?do=Manage"><i class="bx bx-right-arrow-alt"></i>Manage Category</a>
+						</li>
+						<li> <a href="category.php?do=ManageTrash"><i class="bx bx-right-arrow-alt"></i>Trash Category</a>
+						</li>						
+					</ul>
+				</li>				
+				<!-- ######### START: BLOG MANAGEMENT #########  -->
 
 				
 			</ul>
