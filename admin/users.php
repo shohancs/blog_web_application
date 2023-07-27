@@ -645,7 +645,7 @@
 					else { ?>
 						<div class="alert alert-info" role="alert">
 						  404 Page Not Found. Sorry!! You are trying to wrong access.
-						</div>;
+						</div>
 					<?php }
 				?>
 

@@ -29,10 +29,10 @@
 						</div>
 						<div class="menu-title">Users Management</div>
 					</a>
-					<ul>
-						<li> <a href="users.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add User</a>
-						</li>
+					<ul>						
 						<li> <a href="users.php?do=Manage"><i class="bx bx-right-arrow-alt"></i>Manage User</a>
+						</li>
+						<li> <a href="users.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add User</a>
 						</li>
 						<li> <a href="users.php?do=ManageTrash"><i class="bx bx-right-arrow-alt"></i>Trash User</a>
 						</li>						
@@ -49,10 +49,10 @@
 						<div class="menu-title">Category</div>
 					</a>
 					<ul>
-						<li> <a href="category.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
-						</li>
 						<li> <a href="category.php?do=Manage"><i class="bx bx-right-arrow-alt"></i>Manage Category</a>
 						</li>
+						<li> <a href="category.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add Category</a>
+						</li>						
 						<li> <a href="category.php?do=ManageTrash"><i class="bx bx-right-arrow-alt"></i>Trash Category</a>
 						</li>						
 					</ul>

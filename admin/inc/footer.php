@@ -137,7 +137,13 @@
 		  </script>
 		  <script src="assets/js/index.js"></script>
 		<!--app JS-->
-		<script src="assets/js/app.js"></script>		
+		<script src="assets/js/app.js"></script>
+
+		<!-- ########## START: CK EDITOR ########## -->
+		<script>
+            CKEDITOR.replace( 'editor1' );
+        </script>
+		<!-- ########## END: CK EDITOR ########## -->
 	</body>
 	<?php 
 			ob_end_flush();
