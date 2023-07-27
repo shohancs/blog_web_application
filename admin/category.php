@@ -185,7 +185,7 @@
 
 											<div class="mb-3">
 												<label for="">Category Description</label>
-												<textarea name="address" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="address.."></textarea>
+												<textarea name="cat_desc" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="category description.."></textarea>
 											</div>
 
 											<div class="mb-3">
@@ -202,11 +202,133 @@
 					<?php }
 
 					else if ( $do == "Store" ) {
-						
+						if (isset($_POST['addCategory'])) {
+							$catName 		= mysqli_real_escape_string($db, $_POST['catName']);
+							$is_parent 		= mysqli_real_escape_string($db, $_POST['is_parent']);
+							$status 		= mysqli_real_escape_string($db, $_POST['status']);
+							$cat_desc 		= mysqli_real_escape_string($db, $_POST['cat_desc']);
+
+							$addCategorySql = "INSERT INTO category (cat_name, cat_desc, is_parent, status) VALUES ('$catName', '$cat_desc', '$is_parent', '$status')";
+							$addCategoryQuery = mysqli_query($db, $addCategorySql);
+
+							if ($addCategoryQuery) {
+								header("Location: category.php?do=Manage");
+							}
+							else {
+								die("mysqli Error!" . mysqli_error($db));
+							}
+							
+						}	
 					}
 
-					else if ( $do == "Edit" ) {
+					else  if ( $do == "Edit" ) {
+						if (isset($_GET['u_id'])) {
+							$up_id =  $_GET['u_id'];
+							$up_idSql = "SELECT * FROM category WHERE cat_id='$up_id'";
+							$up_idQuery = mysqli_query($db, $up_idSql);
 
+							while ($row = mysqli_fetch_assoc($up_idQuery)) {
+								$cat_id 	= $row['cat_id'];
+								$cat_name 	= $row['cat_name'];
+								$cat_desc 	= $row['cat_desc'];
+								$is_parent 	= $row['is_parent'];
+								$status 	= $row['status'];
+								?>
+								<!-- Top Icon -->
+						<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+							<div class="breadcrumb-title pe-3">Tables</div>
+							<div class="ps-3">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb mb-0 p-0">
+										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+										</li>
+										<li class="breadcrumb-item active" aria-current="page">Data Table</li>
+									</ol>
+								</nav>
+							</div>					
+						</div>
+						<!-- Top Icon -->
+
+						<h6 class="mb-3 text-uppercase">DataTable Example</h6><hr>
+
+						<!-- ########## START: MAIN BODY ########## -->
+						<div class="card">
+							<div class="card-body">
+								<form action="users.php?do=Update" method="POST" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Full Name</label>
+												<input type="text" name="fullname" class="form-control" required autocomplete="off" autofocus placeholder="full name.." value="<?php echo $fullname; ?>">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Email Address</label>
+												<input type="email" name="email" class="form-control" required autocomplete="off" autofocus placeholder="email address.." value="<?php echo $email; ?>">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Password</label>
+												<input type="password" name="password" class="form-control" autocomplete="off" autofocus placeholder="*******">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Re-type Password</label>
+												<input type="password" name="re_password" class="form-control" autocomplete="off" autofocus placeholder="*******">
+											</div>
+										</div>
+
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Phone No.</label>
+												<input type="tel" name="phone" class="form-control" required autocomplete="off" autofocus  placeholder="phone no.." value="<?php echo $phone; ?>">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Address</label>
+												<textarea name="address" class="form-control" autocomplete="off" autofocus cols="30" rows="7"  placeholder="address.."><?php echo $address; ?></textarea>
+											</div>
+
+											
+										</div>
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Role</label>
+												<select class="form-select" name="role" aria-label="">
+												  <option>Please Select the User Role</option>
+												  <option value="1" <?php if ($role == 1) { echo "selected"; } ?>>Admin</option>
+												  <option value="2" <?php if ($role == 2) { echo "selected"; } ?>>User</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Status</label>
+												<select class="form-select" name="status" aria-label="">
+												  <option value="1">Please Select the User Status</option>
+												  <option value="1" <?php if ($status == 1) { echo "selected"; } ?>>Active</option>
+												  <option value="0" <?php if ($status == 0) { echo "selected"; } ?>>InActive</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Image</label>
+												<input type="file" name="image" class="form-control" >
+											</div>
+
+											<div class="mb-3">
+												<div class="d-grid gap-2">
+													<input type="hidden" name="updateUserId" value="<?php echo $user_id; ?>">
+													<input type="submit" name="updateUser" class="btn btn-primary">
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>				
+						<!-- ########## END: MAIN BODY ########## -->
+							<?php }
+						}
 					}
 
 					else if ( $do == "Update" ) {
