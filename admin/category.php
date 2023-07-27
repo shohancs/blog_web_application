@@ -87,43 +87,43 @@
 																<?php }
 															?>
 													      </td>
-															<td>
-																<div class="action-btn">
-																  <ul>
-																    <li>
-																      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
-																    </li>
-																    <li>
-																      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
-																    </li>
-																  </ul>
-																</div>
+<td>
+	<div class="action-btn">
+	  <ul>
+	    <li>
+	      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
+	    </li>
+	    <li>
+	      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
+	    </li>
+	  </ul>
+	</div>
 
-																<!-- Modal Start -->
-																<!-- ########## START: MODAL PART ########## -->
-																<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																  <div class="modal-dialog">
-																    <div class="modal-content">
+	<!-- Modal Start -->
+	<!-- ########## START: MODAL PART ########## -->
+	<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
 
-																      <div class="modal-header">
-																        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span> Trash folder!!</h1>
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span> Trash folder!!</h1>
 
-																        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																      </div>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
 
-																      <div class="modal-body">
-																        <div class="modal-btn">
-																          <a href="category.php?do=Trash&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Trash</a>
-																          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
-																        </div>
-																      </div>
+	      <div class="modal-body">
+	        <div class="modal-btn">
+	          <a href="category.php?do=Trash&trashCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Trash</a>
+	          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
+	        </div>
+	      </div>
 
-																    </div>
-																  </div>
-																</div>
-																<!-- ########## END: MODAL PART ########## -->
-																<!-- Modal End -->
-															</td>
+	    </div>
+	  </div>
+	</div>
+	<!-- ########## END: MODAL PART ########## -->
+	<!-- Modal End -->
+</td>
 													    </tr>
 													<?php 
 
@@ -165,42 +165,42 @@
 															?>
 													      </td>
 															<td>
-																<div class="action-btn">
-																  <ul>
-																    <li>
-																      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
-																    </li>
-																    <li>
-																      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
-																    </li>
-																  </ul>
-																</div>
+	<div class="action-btn">
+	  <ul>
+	    <li>
+	      <a href="category.php?do=Edit&u_id=<?php echo $cat_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
+	    </li>
+	    <li>
+	      <a href="" data-bs-toggle="modal" data-bs-target="#catDel<?php echo $cat_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
+	    </li>
+	  </ul>
+	</div>
 
-																<!-- Modal Start -->
-																<!-- ########## START: MODAL PART ########## -->
-																<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																  <div class="modal-dialog">
-																    <div class="modal-content">
+	<!-- Modal Start -->
+	<!-- ########## START: MODAL PART ########## -->
+	<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
 
-																      <div class="modal-header">
-																        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span> Trash folder!!</h1>
+	      <div class="modal-header">
+	        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span> Trash folder!!</h1>
 
-																        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																      </div>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
 
-																      <div class="modal-body">
-																        <div class="modal-btn">
-																          <a href="category.php?do=Trash&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Trash</a>
-																          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
-																        </div>
-																      </div>
+	      <div class="modal-body">
+	        <div class="modal-btn">
+	          <a href="category.php?do=Trash&trashCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Trash</a>
+	          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
+	        </div>
+	      </div>
 
-																    </div>
-																  </div>
-																</div>
-																<!-- ########## END: MODAL PART ########## -->
-																<!-- Modal End -->
-															</td>
+	    </div>
+	  </div>
+	</div>
+	<!-- ########## END: MODAL PART ########## -->
+	<!-- Modal End -->
+</td>
 													    </tr>
 
 														<?php
@@ -365,7 +365,7 @@
 											<div class="mb-3">
 												<label for="">Select the Parent Category [ If Any ]</label>
 												<select class="form-select" name="is_parent" aria-label="">
-												  <option>Please Select the Parent Category</option>
+												  <option value="0">Please Select the Parent Category</option>
 												  <?php  
 												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1 ORDER BY cat_name ASC";
 												  	$p_query = mysqli_query($db, $sql);
@@ -431,6 +431,21 @@
 								else {
 									die("mysqli Error!" . mysqli_error($db));
 								}
+						}
+					}
+
+					else if ( $do == "Trash" ) {
+						if (isset($_GET['trashCatId'])) {
+							$trashId = $_GET['trashCatId'];
+							$trash_Sql = "UPDATE category SET status=0 WHERE cat_id='$trashId'";
+							$trash_query = mysqli_query($db, $trash_Sql);
+
+							if ($trash_query) {
+								header("Location: category.php?do=Manage");
+							}
+							else {
+								die("mysqli Error!" . mysqli_error($db));
+							}
 						}
 					}
 
@@ -525,30 +540,30 @@
 																  </ul>
 																</div>
 
-																<!-- Modal Start -->
-																<!-- ########## START: MODAL PART ########## -->
-																<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-																  <div class="modal-dialog">
-																    <div class="modal-content">
+<!-- Modal Start -->
+<!-- ########## START: MODAL PART ########## -->
+<div class="modal fade" id="catDel<?php echo $cat_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
 
-																      <div class="modal-header">
-																        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Delete <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span></h1>
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Delete <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $cat_name; ?></span></h1>
 
-																        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-																      </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
 
-																      <div class="modal-body">
-																        <div class="modal-btn">
-																          <a href="category.php?do=Delete&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Delete</a>
-																          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
-																        </div>
-																      </div>
+      <div class="modal-body">
+        <div class="modal-btn">
+          <a href="category.php?do=Delete&delCatId=<?php echo $cat_id; ?>" class="btn btn-danger me-3">Delete</a>
+          <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
+        </div>
+      </div>
 
-																    </div>
-																  </div>
-																</div>
-																<!-- ########## END: MODAL PART ########## -->
-																<!-- Modal End -->
+    </div>
+  </div>
+</div>
+<!-- ########## END: MODAL PART ########## -->
+<!-- Modal End -->
 															</td>
 													    </tr>
 													<?php }
@@ -567,7 +582,18 @@
 					<?php }
 
 					else if ( $do == "Delete" ) {
+						if (isset($_GET['delCatId'])) {
+							$deleteCategoryData = $_GET['delCatId'];
+							$delete_Sql = "DELETE FROM category WHERE cat_id='$deleteCategoryData'";
+							$delete_query = mysqli_query($db, $delete_Sql);
 
+							if ($delete_query) {
+								header("Location: category.php?do=Manage");
+							}
+							else {
+								die("mysqli Error!" . mysqli_error($db));
+							}
+						}
 					}
 
 					else { ?>
