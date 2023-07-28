@@ -85,7 +85,20 @@
 																?>
 															  </td>
 															  <td><?php echo $title; ?></td>
-														      <td><?php echo $category_id; ?></td>
+														      <td>
+														      	<?php  
+														      		$readCat_Sql = "SELECT * FROM category WHERE cat_id='$category_id'";
+														      		$readCat_Quary = mysqli_query($db, $readCat_Sql);
+
+														      		while( $row = mysqli_fetch_assoc($readCat_Quary) ){
+														      			$cc_id 	 = $row['cat_id'];
+														      			$cc_name = $row['cat_name'];
+
+														      			echo $cc_name;
+														      		}
+
+														      	?>
+														      </td>
 														      <td><?php echo $author_id; ?></td>
 														      <td><?php echo $tags; ?></td>
 														      <td>
