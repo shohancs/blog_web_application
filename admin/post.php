@@ -188,11 +188,22 @@
 												  	$read = mysqli_query($db, $sql);
 
 												  	while ($row = mysqli_fetch_assoc($read)) {
-												  		$pcat_id = $row['cat_id'];
-												  		$pcat_name = $row['cat_name'];
+												  		$pcat_id 	= $row['cat_id'];
+												  		$pcat_name 	= $row['cat_name'];
 												  		?>
 														<option value="<?php echo $pcat_id; ?>"><?php echo $pcat_name; ?></option>
 												  		<?php
+												  		// for sub Category
+												  		$sub_sql = "SELECT * FROM category WHERE is_parent=$pcat_id AND status=1";
+													  	$read_sub = mysqli_query($db, $sub_sql);
+
+													  	while ($row = mysqli_fetch_assoc($read_sub)){
+													  		$ccat_id 	= $row['cat_id'];
+												  			$ccat_name 	= $row['cat_name'];
+												  			?>
+												  			<option value="<?php echo $ccat_id; ?>"><?php echo " -- " . $ccat_name; ?></option>
+												  			<?php 
+													  	}
 												  	}
 												  ?>
 												  
@@ -200,37 +211,8 @@
 											</div>
 
 											<div class="mb-3">
-												<label for="">Password</label>
-												<input type="password" name="password" class="form-control" required autocomplete="off" autofocus placeholder="password..">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Re-type Password</label>
-												<input type="password" name="re_password" class="form-control" required autocomplete="off" autofocus placeholder="re-type password..">
-											</div>
-										</div>
-
-										<div class="col-lg-4">
-											<div class="mb-3">
-												<label for="">Phone No.</label>
-												<input type="tel" name="phone" class="form-control" required autocomplete="off" autofocus  placeholder="phone no..">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Address</label>
-												<textarea name="address" class="form-control" autocomplete="off" autofocus cols="30" rows="7"  placeholder="address.."></textarea>
-											</div>
-
-											
-										</div>
-										<div class="col-lg-4">
-											<div class="mb-3">
-												<label for="">Role</label>
-												<select class="form-select" name="role" aria-label="">
-												  <option value="2">Please Select the User Role</option>
-												  <option value="1">Admin</option>
-												  <option value="2">User</option>
-												</select>
+												<label for="">Meta Tags</label>
+												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus placeholder="meta tag..">
 											</div>
 
 											<div class="mb-3">
@@ -246,10 +228,18 @@
 												<label for="">Image</label>
 												<input type="file" name="image" class="form-control" >
 											</div>
+										</div>
+
+										<div class="col-lg-8">
+											
+											<div class="mb-3">
+												<label for="">Description</label>
+												<textarea name="post_desc" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="category description.."></textarea>
+											</div>											
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
-													<input type="submit" name="addUser" class="btn btn-primary">
+													<input type="submit" name="addPost" class="btn btn-primary">
 												</div>
 											</div>
 										</div>

@@ -286,7 +286,7 @@
 
 											<div class="mb-3">
 												<label for="">Category Description</label>
-												<textarea name="cat_desc" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="category description.."></textarea>
+												<textarea name="cat_desc" class="form-control"  autocomplete="off" autofocus cols="" rows="5" placeholder="category description.."></textarea>
 											</div>
 
 											<div class="mb-3">

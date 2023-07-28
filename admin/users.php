@@ -48,7 +48,7 @@
 
 										<tbody>
 											<?php  
-												$usersReadsql = "SELECT * FROM users WHERE status=1 ORDER BY fullname ASC";
+												$usersReadsql = "SELECT * FROM users WHERE role=2 AND status=1 ORDER BY fullname ASC";
 												$usersRead = mysqli_query($db, $usersReadsql);
 												$countData = mysqli_num_rows($usersRead);
 
@@ -75,16 +75,171 @@
 														?>
 															<tr>
 																<td><?php echo $i; ?></td>
-<td>
-	<?php 
-		if (!empty($image)) {
-			echo '<img src="assets/images/users/' . $image . '" style="width: 40px;">';
-		}
-		else {
-			echo '<img src="assets/images/users/default.jpg" style="width: 40px; ">';
-		}
-	?>
-</td>
+																<td>
+																	<?php 
+																		if (!empty($image)) {
+																			echo '<img src="assets/images/users/' . $image . '" style="width: 40px;">';
+																		}
+																		else {
+																			echo '<img src="assets/images/users/default.jpg" style="width: 40px; ">';
+																		}
+																	?>
+																</td>
+																<td><?php echo $fullname; ?></td>
+																<td><?php echo $email; ?></td>
+																<td><?php echo $phone; ?></td>
+																<td><?php echo $address; ?></td>
+																<td>
+																	<?php  
+																		if ($role == 1) { ?>
+																			<span class="badge text-bg-primary">Admin</span>
+																		<?php }
+																		else if ($role == 2) { ?>
+																			<span class="badge text-bg-warning">User</span>
+																		<?php }
+																	?>
+																</td>
+																<td>
+																	<?php  
+																		if ($status == 1) { ?>
+																			<span class="badge text-bg-success">Active</span>
+																		<?php }
+																		else if ($status == 0) { ?>
+																			<span class="badge text-bg-danger">InActive</span>
+																		<?php }
+																	?>
+																</td>
+																<td><?php echo $join_date; ?></td>
+																<td>
+																	<div class="action-btn">
+																	  <ul>
+																	    <li>
+																	      <a href="users.php?do=Edit&u_id=<?php echo $user_id; ?>"><i class="fa-regular fa-pen-to-square edit"></i></a>
+																	    </li>
+																	    <li>
+																	      <a href="" data-bs-toggle="modal" data-bs-target="#userDel<?php echo $user_id; ?>"><i class="fa-regular fa-trash-can trush"></i></a>
+																	    </li>
+																	  </ul>
+																	</div>
+
+																	<!-- Modal Start -->
+																	<!-- ########## START: MODAL PART ########## -->
+										                        <div class="modal fade" id="userDel<?php echo $user_id; ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+										                          <div class="modal-dialog">
+										                            <div class="modal-content">
+
+										                              <div class="modal-header">
+										                                <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $fullname; ?></span> Trash folder!!</h1>
+
+										                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+										                              </div>
+
+										                              <div class="modal-body">
+										                                <div class="modal-btn">
+										                                  <a href="users.php?do=Trash&deluserId=<?php echo $user_id; ?>" class="btn btn-danger me-3">Trash</a>
+										                                  <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
+										                                </div>
+										                              </div>
+
+										                            </div>
+										                          </div>
+										                        </div>
+										                        <!-- ########## END: MODAL PART ########## -->
+																	<!-- Modal End -->
+																</td>
+															</tr>
+												<?php }
+												}
+
+												
+											?>
+											
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+						<!-- Main Table -->
+					<?php }
+
+					else if ( $do == "AdminManage" ) { ?>
+						<!-- Top Icon -->
+						<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+							<div class="breadcrumb-title pe-3">Tables</div>
+							<div class="ps-3">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb mb-0 p-0">
+										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+										</li>
+										<li class="breadcrumb-item active" aria-current="page">Data Table</li>
+									</ol>
+								</nav>
+							</div>					
+						</div>
+						<!-- Top Icon -->
+
+						<!-- Main Table -->
+						<h6 class="mb-3 text-uppercase">DataTable Example</h6>
+						<hr>
+						
+						<div class="card">
+							<div class="card-body">
+								<div class="table-responsive">
+									<table id="example" class="table table-striped table-hover table-bordered" style="width:100%">
+										<thead class="table-dark">
+											<tr>
+												<th>Sl.</th>
+												<th>Image</th>
+												<th>Name</th>
+												<th>Email</th>
+												<th>Phone No.</th>
+												<th>Address</th>
+												<th>Role</th>
+												<th>Status</th>
+												<th>Join Date</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+
+										<tbody>
+											<?php  
+												$usersReadsql = "SELECT * FROM users WHERE role=1 AND status=1 ORDER BY fullname ASC";
+												$usersRead = mysqli_query($db, $usersReadsql);
+												$countData = mysqli_num_rows($usersRead);
+
+												if ($countData == 0) { ?>
+													<div class="alert alert-warning" role="alert">
+													  Sorry! No Data Found into the Database!
+													</div>
+												<?php }
+
+												else {
+													$i = 0;
+													while ($row = mysqli_fetch_assoc($usersRead)) {
+														$user_id 	= $row['user_id'];
+														$fullname 	= $row['fullname'];
+														$email 		= $row['email'];
+														$password 	= $row['password'];
+														$phone 		= $row['phone'];
+														$address 	= $row['address'];
+														$role 		= $row['role'];
+														$status 	= $row['status'];
+														$image 		= $row['image'];
+														$join_date 	= $row['join_date'];
+														$i++;
+														?>
+															<tr>
+																<td><?php echo $i; ?></td>
+																<td>
+																	<?php 
+																		if (!empty($image)) {
+																			echo '<img src="assets/images/users/' . $image . '" style="width: 40px;">';
+																		}
+																		else {
+																			echo '<img src="assets/images/users/default.jpg" style="width: 40px; ">';
+																		}
+																	?>
+																</td>
 																<td><?php echo $fullname; ?></td>
 																<td><?php echo $email; ?></td>
 																<td><?php echo $phone; ?></td>
@@ -549,7 +704,16 @@
 														?>
 															<tr>
 																<td><?php echo $i; ?></td>
-																<td><?php echo $image; ?></td>
+																<td>
+																	<?php 
+																		if (!empty($image)) {
+																			echo '<img src="assets/images/users/' . $image . '" style="width: 40px;">';
+																		}
+																		else {
+																			echo '<img src="assets/images/users/default.jpg" style="width: 40px; ">';
+																		}
+																	?>
+																</td>
 																<td><?php echo $fullname; ?></td>
 																<td><?php echo $email; ?></td>
 																<td><?php echo $phone; ?></td>
