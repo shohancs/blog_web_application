@@ -41,8 +41,8 @@
 				</li>				
 				<!-- ######### START: ROLE MANAGEMENT #########  -->
 
-				<!-- ######### START: BLOG MANAGEMENT #########  -->
-				<li class="menu-label">Blog Portal</li>
+				<!-- ######### START: CATEGORY MANAGEMENT #########  -->
+				<li class="menu-label">Category Management</li>
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>
@@ -57,9 +57,11 @@
 						<li> <a href="category.php?do=ManageTrash"><i class="bx bx-radio-circle"></i>Trash Category</a>
 						</li>						
 					</ul>
-				</li>				
+				</li>		
+				<!-- ######### END: CATEGORY MANAGEMENT #########  -->	
 
-
+				<!-- ######### START: BLOG MANAGEMENT #########  -->
+				<li class="menu-label">Blog Portal</li>	
 				<li>
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-message-square-edit"></i>

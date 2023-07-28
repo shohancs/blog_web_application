@@ -38,6 +38,7 @@
 												<th>Title</th>
 												<th>Category</th>
 												<th>Author</th>
+												<th>Meta Tags</th>
 												<th>Status</th>
 												<th>Post Date</th>
 												<th>Action</th>
@@ -72,9 +73,7 @@
 															$i++;
 															?>
 															<tr>
-														      <th scope="row"><?php echo $i; ?></th>
-														      <td><?php echo $title; ?></td>
-														      <td><?php echo $post_desc; ?></td>
+														      <th scope="row"><?php echo $i; ?></th>	
 															  <td>
 																<?php 
 																	if (!empty($image)) {
@@ -85,6 +84,7 @@
 																	}
 																?>
 															  </td>
+															  <td><?php echo $title; ?></td>
 														      <td><?php echo $category_id; ?></td>
 														      <td><?php echo $author_id; ?></td>
 														      <td><?php echo $tags; ?></td>
@@ -171,7 +171,7 @@
 						<!-- ########## START: MAIN BODY ########## -->
 						<div class="card">
 							<div class="card-body">
-								<form action="users.php?do=Store" method="POST" enctype="multipart/form-data">
+								<form action="post.php?do=Store" method="POST" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="mb-3">
@@ -211,7 +211,7 @@
 											</div>
 
 											<div class="mb-3">
-												<label for="">Meta Tags</label>
+												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
 												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus placeholder="meta tag..">
 											</div>
 
@@ -254,15 +254,148 @@
 						if (isset($_POST['addPost'])) {
 							$title 		= mysqli_real_escape_string($db, $_POST['title']);
 							$cate_id 	= mysqli_real_escape_string($db, $_POST['cate_id']);
+							$author_id 	= $_SESSION['user_id'];
 							$tags 		= mysqli_real_escape_string($db, $_POST['tags']);
 							$status 	= mysqli_real_escape_string($db, $_POST['status']);
-							$image 		= mysqli_real_escape_string($db, $_POST['image']);
 							$post_desc 	= mysqli_real_escape_string($db, $_POST['post_desc']);
+
+							$image 		= $_FILES['image']['name'];
+							$temp_image = $_FILES['image']['tmp_name'];
+
+							if (!empty($image)) {
+								$img = rand(0, 9999999) . "-" . $image;
+								move_uploaded_file($temp_image, 'assets/images/posts/' . $img);
+
+								$postAdd_sql = "INSERT INTO post (title, post_desc, image, category_id, author_id, tags, status, post_date) VALUES ('$title', '$post_desc','$img', '$cate_id', '$author_id', '$tags', '$status', now() ) ";
+								$postAdd_query = mysqli_query($db, $postAdd_sql);
+
+								if ($postAdd_query) {
+									header("Location: post.php?do=Manage");
+								}
+								else {
+									die("mysqli Error!" . mysqli_error($db));
+								}
+							}
+							else {
+								$img = '';
+							}
+
+							
 						}
 					}
 
-					else if ( $do == "Edit" ) {
-						// code...
+					else  if ( $do == "Edit" ) {
+						if (isset($_GET['u_id'])) {
+							$up_id =  $_GET['u_id'];
+							$up_idSql = "SELECT * FROM post WHERE post_id='$up_id'";
+							$up_idQuery = mysqli_query($db, $up_idSql);
+
+							while ($row = mysqli_fetch_assoc($up_idQuery)) {
+								$post_id 		= $row['post_id'];
+								$title 			= $row['title'];
+								$post_desc 		= $row['post_desc'];
+								$image 			= $row['image'];
+								$category_id 	= $row['category_id'];
+								$author_id 		= $row['author_id'];
+								$tags 			= $row['tags'];
+								$status 		= $row['status'];
+								$post_date 		= $row['post_date'];
+								?>
+								<!-- Top Icon -->
+						<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+							<div class="breadcrumb-title pe-3">Tables</div>
+							<div class="ps-3">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb mb-0 p-0">
+										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+										</li>
+										<li class="breadcrumb-item active" aria-current="page">Data Table</li>
+									</ol>
+								</nav>
+							</div>					
+						</div>
+						<!-- Top Icon -->
+
+						<h6 class="mb-3 text-uppercase">DataTable Example</h6><hr>
+
+						<!-- ########## START: MAIN BODY ########## -->
+						<div class="card">
+							<div class="card-body">
+								<form action="users.php?do=Update" method="POST" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Full Name</label>
+												<input type="text" name="fullname" class="form-control" required autocomplete="off" autofocus placeholder="full name.." value="<?php echo $fullname; ?>">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Email Address</label>
+												<input type="email" name="email" class="form-control" required autocomplete="off" autofocus placeholder="email address.." value="<?php echo $email; ?>">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Password</label>
+												<input type="password" name="password" class="form-control" autocomplete="off" autofocus placeholder="*******">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Re-type Password</label>
+												<input type="password" name="re_password" class="form-control" autocomplete="off" autofocus placeholder="*******">
+											</div>
+										</div>
+
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Phone No.</label>
+												<input type="tel" name="phone" class="form-control" required autocomplete="off" autofocus  placeholder="phone no.." value="<?php echo $phone; ?>">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Address</label>
+												<textarea name="address" class="form-control" autocomplete="off" autofocus cols="30" rows="7"  placeholder="address.."><?php echo $address; ?></textarea>
+											</div>
+
+											
+										</div>
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Role</label>
+												<select class="form-select" name="role" aria-label="">
+												  <option>Please Select the User Role</option>
+												  <option value="1" <?php if ($role == 1) { echo "selected"; } ?>>Admin</option>
+												  <option value="2" <?php if ($role == 2) { echo "selected"; } ?>>User</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Status</label>
+												<select class="form-select" name="status" aria-label="">
+												  <option value="1">Please Select the User Status</option>
+												  <option value="1" <?php if ($status == 1) { echo "selected"; } ?>>Active</option>
+												  <option value="0" <?php if ($status == 0) { echo "selected"; } ?>>InActive</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Image</label>
+												<input type="file" name="image" class="form-control" >
+											</div>
+
+											<div class="mb-3">
+												<div class="d-grid gap-2">
+													<input type="hidden" name="updateUserId" value="<?php echo $user_id; ?>">
+													<input type="submit" name="updateUser" class="btn btn-primary">
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>				
+						<!-- ########## END: MAIN BODY ########## -->
+							<?php }
+						}
 					}
 
 					else if ( $do == "Update" ) {
