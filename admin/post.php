@@ -150,9 +150,100 @@
 						<!-- ########## END: MAIN BODY ########## -->
 					<?php }
 
-					else if ( $do == "Add" ) {
-						// code...
-					}
+					else if ( $do == "Add" ) { ?>
+						<!-- Top Icon -->
+						<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
+							<div class="breadcrumb-title pe-3">Tables</div>
+							<div class="ps-3">
+								<nav aria-label="breadcrumb">
+									<ol class="breadcrumb mb-0 p-0">
+										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+										</li>
+										<li class="breadcrumb-item active" aria-current="page">Data Table</li>
+									</ol>
+								</nav>
+							</div>					
+						</div>
+						<!-- Top Icon -->
+
+						<h6 class="mb-3 text-uppercase">DataTable Example</h6><hr>
+
+						<!-- ########## START: MAIN BODY ########## -->
+						<div class="card">
+							<div class="card-body">
+								<form action="users.php?do=Store" method="POST" enctype="multipart/form-data">
+									<div class="row">
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Full Name</label>
+												<input type="text" name="fullname" class="form-control" required autocomplete="off" autofocus placeholder="full name..">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Email Address</label>
+												<input type="email" name="email" class="form-control" required autocomplete="off" autofocus placeholder="email address..">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Password</label>
+												<input type="password" name="password" class="form-control" required autocomplete="off" autofocus placeholder="password..">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Re-type Password</label>
+												<input type="password" name="re_password" class="form-control" required autocomplete="off" autofocus placeholder="re-type password..">
+											</div>
+										</div>
+
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Phone No.</label>
+												<input type="tel" name="phone" class="form-control" required autocomplete="off" autofocus  placeholder="phone no..">
+											</div>
+
+											<div class="mb-3">
+												<label for="">Address</label>
+												<textarea name="address" class="form-control" autocomplete="off" autofocus cols="30" rows="7"  placeholder="address.."></textarea>
+											</div>
+
+											
+										</div>
+										<div class="col-lg-4">
+											<div class="mb-3">
+												<label for="">Role</label>
+												<select class="form-select" name="role" aria-label="">
+												  <option value="2">Please Select the User Role</option>
+												  <option value="1">Admin</option>
+												  <option value="2">User</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Status</label>
+												<select class="form-select" name="status" aria-label="">
+												  <option value="1">Please Select the User Status</option>
+												  <option value="1">Active</option>
+												  <option value="0">InActive</option>
+												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Image</label>
+												<input type="file" name="image" class="form-control" >
+											</div>
+
+											<div class="mb-3">
+												<div class="d-grid gap-2">
+													<input type="submit" name="addUser" class="btn btn-primary">
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>				
+						<!-- ########## END: MAIN BODY ########## -->
+					<?php }
 
 					else if ( $do == "Store" ) {
 						// code...
