@@ -206,6 +206,11 @@
 											</div>
 
 											<div class="mb-3">
+												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
+												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus placeholder="meta tag..">
+											</div>
+
+											<div class="mb-3">
 												<label for="">Category Name</label>
 												<select class="form-select" name="cate_id">
 												  <option value="">Please Select the Category</option>
@@ -234,12 +239,7 @@
 												  ?>
 												  
 												</select>
-											</div>
-
-											<div class="mb-3">
-												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
-												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus placeholder="meta tag..">
-											</div>
+											</div>											
 
 											<div class="mb-3">
 												<label for="">Status</label>
@@ -356,6 +356,11 @@
 											</div>
 
 											<div class="mb-3">
+												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
+												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus value="<?php echo $tags; ?>">
+											</div>
+
+											<div class="mb-3">
 												<label for="">Category Name</label>
 												<select class="form-select" name="cate_id">
 												  <option value="">Please Select the Category</option>
@@ -388,12 +393,7 @@
 												  ?>
 												  
 												</select>
-											</div>
-
-											<div class="mb-3">
-												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
-												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus value="<?php echo $tags; ?>">
-											</div>
+											</div>											
 
 											<div class="mb-3">
 												<label for="">Status</label>
