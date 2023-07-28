@@ -307,7 +307,7 @@
 							<div class="ps-3">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb mb-0 p-0">
-										<li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+										<li class="breadcrumb-item"><a href="post.php?do=Manage"><i class="bx bx-home-alt"></i></a>
 										</li>
 										<li class="breadcrumb-item active" aria-current="page">Data Table</li>
 									</ol>
@@ -316,64 +316,61 @@
 						</div>
 						<!-- Top Icon -->
 
-						<h6 class="mb-3 text-uppercase">DataTable Example</h6><hr>
+						<h6 class="mb-3 text-uppercase">Update Post Information</h6><hr>
 
 						<!-- ########## START: MAIN BODY ########## -->
 						<div class="card">
 							<div class="card-body">
-								<form action="users.php?do=Update" method="POST" enctype="multipart/form-data">
+								<form action="post.php?do=Update" method="POST" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="mb-3">
-												<label for="">Full Name</label>
-												<input type="text" name="fullname" class="form-control" required autocomplete="off" autofocus placeholder="full name.." value="<?php echo $fullname; ?>">
+												<label for="">Post Title</label>
+												<input type="text" name="title" class="form-control" required autocomplete="off" autofocus value="<?php echo $title; ?>">
 											</div>
 
 											<div class="mb-3">
-												<label for="">Email Address</label>
-												<input type="email" name="email" class="form-control" required autocomplete="off" autofocus placeholder="email address.." value="<?php echo $email; ?>">
-											</div>
+												<label for="">Category Name</label>
+												<select class="form-select" name="cate_id">
+												  <option value="">Please Select the Category</option>
+												  <?php  
+												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1";
+												  	$read = mysqli_query($db, $sql);
 
-											<div class="mb-3">
-												<label for="">Password</label>
-												<input type="password" name="password" class="form-control" autocomplete="off" autofocus placeholder="*******">
-											</div>
+												  	while ($row = mysqli_fetch_assoc($read)) {
+												  		$pcat_id 	= $row['cat_id'];
+												  		$pcat_name 	= $row['cat_name'];
+												  		?>
+														<option value="<?php echo $pcat_id; ?>"><?php echo $pcat_name; ?></option>
+												  		<?php
+												  		// for sub Category
+												  		$sub_sql = "SELECT * FROM category WHERE is_parent=$pcat_id AND status=1";
+													  	$read_sub = mysqli_query($db, $sub_sql);
 
-											<div class="mb-3">
-												<label for="">Re-type Password</label>
-												<input type="password" name="re_password" class="form-control" autocomplete="off" autofocus placeholder="*******">
-											</div>
-										</div>
-
-										<div class="col-lg-4">
-											<div class="mb-3">
-												<label for="">Phone No.</label>
-												<input type="tel" name="phone" class="form-control" required autocomplete="off" autofocus  placeholder="phone no.." value="<?php echo $phone; ?>">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Address</label>
-												<textarea name="address" class="form-control" autocomplete="off" autofocus cols="30" rows="7"  placeholder="address.."><?php echo $address; ?></textarea>
-											</div>
-
-											
-										</div>
-										<div class="col-lg-4">
-											<div class="mb-3">
-												<label for="">Role</label>
-												<select class="form-select" name="role" aria-label="">
-												  <option>Please Select the User Role</option>
-												  <option value="1" <?php if ($role == 1) { echo "selected"; } ?>>Admin</option>
-												  <option value="2" <?php if ($role == 2) { echo "selected"; } ?>>User</option>
+													  	while ($row = mysqli_fetch_assoc($read_sub)){
+													  		$ccat_id 	= $row['cat_id'];
+												  			$ccat_name 	= $row['cat_name'];
+												  			?>
+												  			<option value="<?php echo $ccat_id; ?>"><?php echo " -- " . $ccat_name; ?></option>
+												  			<?php 
+													  	}
+												  	}
+												  ?>
+												  
 												</select>
+											</div>
+
+											<div class="mb-3">
+												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
+												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus value="<?php echo $tags; ?>">
 											</div>
 
 											<div class="mb-3">
 												<label for="">Status</label>
 												<select class="form-select" name="status" aria-label="">
 												  <option value="1">Please Select the User Status</option>
-												  <option value="1" <?php if ($status == 1) { echo "selected"; } ?>>Active</option>
-												  <option value="0" <?php if ($status == 0) { echo "selected"; } ?>>InActive</option>
+												  <option value="1" <?php if($status == 1){echo "selected";} ?>>Active</option>
+												  <option value="0" <?php if($status == 0){echo "selected";} ?>>InActive</option>
 												</select>
 											</div>
 
@@ -381,11 +378,19 @@
 												<label for="">Image</label>
 												<input type="file" name="image" class="form-control" >
 											</div>
+										</div>
+
+										<div class="col-lg-8">
+											
+											<div class="mb-3">
+												<label for="">Description</label>
+												<textarea name="post_desc" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="category description.."><?php echo $post_desc; ?></textarea>
+											</div>											
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
-													<input type="hidden" name="updateUserId" value="<?php echo $user_id; ?>">
-													<input type="submit" name="updateUser" class="btn btn-primary">
+													<input type="hidden" name="postId" value="<?php echo $post_id; ?>">
+													<input type="submit" name="updatePost" class="btn btn-primary" value="Save Changes">
 												</div>
 											</div>
 										</div>
@@ -399,8 +404,48 @@
 					}
 
 					else if ( $do == "Update" ) {
-						// code...
+						if (isset($_POST['updatePost'])) {
+							$postId 		= mysqli_real_escape_string($db, $_POST['postId']);
+							$title 		= mysqli_real_escape_string($db, $_POST['title']);
+							$cate_id 	= mysqli_real_escape_string($db, $_POST['cate_id']);
+							$author_id 	= $_SESSION['user_id'];
+							$tags 		= mysqli_real_escape_string($db, $_POST['tags']);
+							$status 	= mysqli_real_escape_string($db, $_POST['status']);
+							$post_desc 	= mysqli_real_escape_string($db, $_POST['post_desc']);
+
+							$image 		= $_FILES['image']['name'];
+							$temp_image = $_FILES['image']['tmp_name'];
+
+							if (!empty($image)) {
+								$img = rand(0, 9999999) . "-" . $image;
+								move_uploaded_file($temp_image, 'assets/images/posts/' . $img);
+
+								$postupdate_sql = "UPDATE post SET title='$title', post_desc='$post_desc', image='$img', category_id='$cate_id', author_id='$author_id', tags='$tags', status='$status' WHERE post_id='$postId' ";
+								$postUpdate_query = mysqli_query($db, $postupdate_sql);
+
+								if ($postUpdate_query) {
+									header("Location: post.php?do=Manage");
+								}
+								else {
+									die("mysqli Error!" . mysqli_error($db));
+								}
+							}
+							else {
+								$img = rand(0, 9999999) . "-" . $image;
+								move_uploaded_file($temp_image, 'assets/images/posts/' . $img);
+
+								$postupdate_sql = "UPDATE post SET title='$title', post_desc='$post_desc', category_id='$cate_id', author_id='$author_id', tags='$tags', status='$status' WHERE post_id='$postId' ";
+								$postUpdate_query = mysqli_query($db, $postupdate_sql);
+
+								if ($postUpdate_query) {
+									header("Location: post.php?do=Manage");
+								}
+								else {
+									die("mysqli Error!" . mysqli_error($db));
+								}
+							}
 					}
+				}
 
 					else if ( $do == "Trash" ) {
 						// code...
