@@ -150,9 +150,9 @@
 																if ($is_parent == 0) { ?>
 																	<span class="badge text-bg-primary">Parent Category</span>
 																<?php }
-																else {
-																	echo "Child category";
-																}
+																else {?>
+																	<span class="badge text-bg-secondary">Child Category</span>
+																<?php }
 															?>
 													      </td>
 													      <td>
