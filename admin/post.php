@@ -35,31 +35,59 @@
 											<tr>
 												<th>Sl.</th>
 												<th>Image</th>
-												<th>Name</th>
-												<th>Email</th>
-												<th>Phone No.</th>
-												<th>Address</th>
-												<th>Role</th>
+												<th>Title</th>
+												<th>Category</th>
+												<th>Author</th>
 												<th>Status</th>
-												<th>Join Date</th>
-												<th>Action</th>
+												<th>Post Date</th>
 												<th>Action</th>
 											</tr>
 										</thead>
+
 										<tbody>
-										    <tr>
-										      <th scope="row">1</th>
-										      <td>Mark</td>
-										      <td>Otto</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										      <td>mdo</td>
-										    </tr>
+											<?php  
+												$readPost_sql = "SELECT * FROM post WHERE status=1 ORDER BY post_id ASC";
+												$readPost_query = mysqli_query( $db, $readPost_sql );
+												$countData = mysqli_num_rows($readPost_query);
+
+												if ($countData == 0) { ?>
+													<div class="alert alert-warning text-center" role="alert">
+													  Sorry! No Data Found into the Database!
+													</div>
+												<?php }
+
+												else{
+													$i = 0;
+
+													while ( $row = mysqli_fetch_assoc($readPost_query) ) {
+														$post_id 		= $row['post_id'];
+														$title 			= $row['title'];
+														$post_desc 		= $row['post_desc'];
+														$image 			= $row['image'];
+														$category_id 	= $row['category_id'];
+														$author_id 		= $row['author_id'];
+														$tags 			= $row['tags'];
+														$status 		= $row['status'];
+														$post_date 		= $row['post_date'];
+														$i++;
+														?>
+														<tr>
+													      <th scope="row"><?php echo $i; ?></th>
+													      <td><?php echo $title; ?></td>
+													      <td><?php echo $post_desc; ?></td>
+													      <td><?php echo $image; ?></td>
+													      <td><?php echo $category_id; ?></td>
+													      <td><?php echo $author_id; ?></td>
+													      <td><?php echo $tags; ?></td>
+													      <td><?php echo $status; ?></td>
+													      <td><?php echo $post_date; ?></td>
+													    </tr>
+														<?php
+													}
+												}
+												
+
+											?>										    
 										</tbody>
 							</div>
 						</div>				
@@ -93,6 +121,12 @@
 					else if ( $do == "Delete" ) {
 						// code...
 					}
+
+					else { ?>
+						<div class="alert alert-info" role="alert">
+						  404 Page Not Found. Sorry!! You are trying to wrong access.
+						</div>
+					<?php }
 				?>
 
 			</div>
