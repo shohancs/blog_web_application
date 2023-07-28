@@ -239,7 +239,7 @@
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
-													<input type="submit" name="addPost" class="btn btn-primary">
+													<input type="submit" name="addPost" class="btn btn-primary" value="Add New Post">
 												</div>
 											</div>
 										</div>
@@ -251,7 +251,14 @@
 					<?php }
 
 					else if ( $do == "Store" ) {
-						// code...
+						if (isset($_POST['addPost'])) {
+							$title 		= mysqli_real_escape_string($db, $_POST['title']);
+							$cate_id 	= mysqli_real_escape_string($db, $_POST['cate_id']);
+							$tags 		= mysqli_real_escape_string($db, $_POST['tags']);
+							$status 	= mysqli_real_escape_string($db, $_POST['status']);
+							$image 		= mysqli_real_escape_string($db, $_POST['image']);
+							$post_desc 	= mysqli_real_escape_string($db, $_POST['post_desc']);
+						}
 					}
 
 					else if ( $do == "Edit" ) {
