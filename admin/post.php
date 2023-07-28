@@ -337,28 +337,28 @@
 												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1";
 												  	$read = mysqli_query($db, $sql);
 
-	while ($row = mysqli_fetch_assoc($read)) {
-		$pcat_id 	= $row['cat_id'];
-		$pcat_name 	= $row['cat_name'];
-		?>
-		<option value="<?php echo $pcat_id; ?>"
-			<?php if ( $category_id == $pcat_id ){ echo 'selected'; } ?>
-		><?php echo $pcat_name; ?></option>
-		<?php
-		// for sub Category
-		$sub_sql = "SELECT * FROM category WHERE is_parent=$pcat_id AND status=1";
-	  	$read_sub = mysqli_query($db, $sub_sql);
+													while ($row = mysqli_fetch_assoc($read)) {
+														$pcat_id 	= $row['cat_id'];
+														$pcat_name 	= $row['cat_name'];
+														?>
+														<option value="<?php echo $pcat_id; ?>"
+															<?php if ( $category_id == $pcat_id ){ echo 'selected'; } ?>
+														><?php echo $pcat_name; ?></option>
+														<?php
+														// for sub Category
+														$sub_sql = "SELECT * FROM category WHERE is_parent=$pcat_id AND status=1";
+													  	$read_sub = mysqli_query($db, $sub_sql);
 
-  	while ($row = mysqli_fetch_assoc($read_sub)){
-  		$ccat_id 	= $row['cat_id'];
-		$ccat_name 	= $row['cat_name'];
-			?>
-		<option value="<?php echo $ccat_id; ?>"
-			<?php if ( $category_id == $ccat_id ){ echo 'selected'; } ?>
-		><?php echo " -- " . $ccat_name; ?></option>
-			<?php 
-  	}
-	}
+													  	while ($row = mysqli_fetch_assoc($read_sub)){
+													  		$ccat_id 	= $row['cat_id'];
+															$ccat_name 	= $row['cat_name'];
+																?>
+															<option value="<?php echo $ccat_id; ?>"
+																<?php if ( $category_id == $ccat_id ){ echo 'selected'; } ?>
+															><?php echo " -- " . $ccat_name; ?></option>
+																<?php 
+													  	}
+													}
 												  ?>
 												  
 												</select>
