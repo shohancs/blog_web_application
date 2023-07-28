@@ -99,7 +99,20 @@
 
 														      	?>
 														      </td>
-														      <td><?php echo $author_id; ?></td>
+      <td>
+      	<?php  
+      		$readUser_Sql = "SELECT * FROM users WHERE user_id='$author_id'";
+      		$readUser_Quary = mysqli_query($db, $readUser_Sql);
+
+      		while( $row = mysqli_fetch_assoc($readUser_Quary) ){
+      			$auth_id 	 = $row['user_id'];
+      			$auth_name = $row['fullname'];
+
+      			echo $auth_name;
+      		}
+
+      	?>
+      </td>
 														      <td><?php echo $tags; ?></td>
 														      <td>
 														      	<?php  
