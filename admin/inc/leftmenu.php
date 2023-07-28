@@ -63,12 +63,12 @@
 					<a href="javascript:;" class="has-arrow">
 						<div class="parent-icon"><i class="bx bx-category"></i>
 						</div>
-						<div class="menu-title">Post</div>
+						<div class="menu-title">All Post</div>
 					</a>
 					<ul>
-						<li> <a href="post.php?do=Manage"><i class="bx bx-right-arrow-alt"></i>Manage Post</a>
+						<li> <a href="post.php?do=Manage"><i class="bx bx-right-arrow-alt"></i>Manage All Post</a>
 						</li>
-						<li> <a href="post.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add Post</a>
+						<li> <a href="post.php?do=Add"><i class="bx bx-right-arrow-alt"></i>Add New Post</a>
 						</li>						
 						<li> <a href="post.php?do=ManageTrash"><i class="bx bx-right-arrow-alt"></i>Trash Post</a>
 						</li>						

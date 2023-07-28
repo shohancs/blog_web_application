@@ -175,13 +175,28 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="mb-3">
-												<label for="">Full Name</label>
-												<input type="text" name="fullname" class="form-control" required autocomplete="off" autofocus placeholder="full name..">
+												<label for="">Post Title</label>
+												<input type="text" name="title" class="form-control" required autocomplete="off" autofocus placeholder="full name..">
 											</div>
 
 											<div class="mb-3">
-												<label for="">Email Address</label>
-												<input type="email" name="email" class="form-control" required autocomplete="off" autofocus placeholder="email address..">
+												<label for="">Category Name</label>
+												<select class="form-select" name="cate_id">
+												  <option value="">Please Select the Category</option>
+												  <?php  
+												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1";
+												  	$read = mysqli_query($db, $sql);
+
+												  	while ($row = mysqli_fetch_assoc($read)) {
+												  		$pcat_id = $row['cat_id'];
+												  		$pcat_name = $row['cat_name'];
+												  		?>
+														<option value="<?php echo $pcat_id; ?>"><?php echo $pcat_name; ?></option>
+												  		<?php
+												  	}
+												  ?>
+												  
+												</select>
 											</div>
 
 											<div class="mb-3">
