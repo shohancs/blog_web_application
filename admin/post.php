@@ -46,13 +46,13 @@
 
 										<tbody>
 											<?php  
-												$readPost_sql = "SELECT * FROM post WHERE status=1 ORDER BY post_id ASC";
+												$readPost_sql = "SELECT * FROM post WHERE status=1 ORDER BY post_id DESC";
 												$readPost_query = mysqli_query( $db, $readPost_sql );
 												$countData = mysqli_num_rows($readPost_query);
 
 												if ($countData == 0) { ?>
 													<div class="alert alert-warning text-center" role="alert">
-													  Sorry! No Data Found into the Database!
+													  Sorry! No Post Found into the Database!
 													</div>
 												<?php }
 
@@ -60,29 +60,47 @@
 													$i = 0;
 
 													while ( $row = mysqli_fetch_assoc($readPost_query) ) {
-														$post_id 		= $row['post_id'];
-														$title 			= $row['title'];
-														$post_desc 		= $row['post_desc'];
-														$image 			= $row['image'];
-														$category_id 	= $row['category_id'];
-														$author_id 		= $row['author_id'];
-														$tags 			= $row['tags'];
-														$status 		= $row['status'];
-														$post_date 		= $row['post_date'];
-														$i++;
-														?>
-														<tr>
-													      <th scope="row"><?php echo $i; ?></th>
-													      <td><?php echo $title; ?></td>
-													      <td><?php echo $post_desc; ?></td>
-													      <td><?php echo $image; ?></td>
-													      <td><?php echo $category_id; ?></td>
-													      <td><?php echo $author_id; ?></td>
-													      <td><?php echo $tags; ?></td>
-													      <td><?php echo $status; ?></td>
-													      <td><?php echo $post_date; ?></td>
-													    </tr>
-														<?php
+															$post_id 		= $row['post_id'];
+															$title 			= $row['title'];
+															$post_desc 		= $row['post_desc'];
+															$image 			= $row['image'];
+															$category_id 	= $row['category_id'];
+															$author_id 		= $row['author_id'];
+															$tags 			= $row['tags'];
+															$status 		= $row['status'];
+															$post_date 		= $row['post_date'];
+															$i++;
+															?>
+															<tr>
+														      <th scope="row"><?php echo $i; ?></th>
+														      <td><?php echo $title; ?></td>
+														      <td><?php echo $post_desc; ?></td>
+															  <td>
+																<?php 
+																	if (!empty($image)) {
+																		echo '<img src="assets/images/posts/' . $image . '" style="width: 40px;">';
+																	}
+																	else {
+																		echo '<img src="assets/images/posts/default.png" style="width: 40px; ">';
+																	}
+																?>
+															  </td>
+														      <td><?php echo $category_id; ?></td>
+														      <td><?php echo $author_id; ?></td>
+														      <td><?php echo $tags; ?></td>
+														      <td>
+														      	<?php  
+																		if ($status == 1) { ?>
+																			<span class="badge text-bg-success">Active</span>
+																		<?php }
+																		else if ($status == 0) { ?>
+																			<span class="badge text-bg-danger">InActive</span>
+																		<?php }
+																	?>
+														      </td>
+														      <td><?php echo $post_date; ?></td>
+														    </tr>
+															<?php
 													}
 												}
 												
