@@ -452,7 +452,18 @@
 				}
 
 					else if ( $do == "Trash" ) {
-						// code...
+						if (isset($_GET['delPostId'])) {
+							$deletePostId = $_GET['delPostId'];
+							$trash_Sql = "UPDATE post SET status=0 WHERE post_id='$deletePostId'";
+							$trash_query = mysqli_query($db, $trash_Sql);
+
+							if ($trash_query) {
+								header("Location: post.php?do=Manage");
+							}
+							else {
+								die("mysqli Error!" . mysqli_error($db));
+							}
+						}
 					}
 
 					else if ( $do == "ManageTrash" ) { ?>
@@ -485,6 +496,7 @@
 												<th>Title</th>
 												<th>Category</th>
 												<th>Author</th>
+												<th>Meta Tags</th>
 												<th>Status</th>
 												<th>Post Date</th>
 												<th>Action</th>
@@ -519,9 +531,7 @@
 															$i++;
 															?>
 															<tr>
-														      <th scope="row"><?php echo $i; ?></th>
-														      <td><?php echo $title; ?></td>
-														      <td><?php echo $post_desc; ?></td>
+														      <th scope="row"><?php echo $i; ?></th>	
 															  <td>
 																<?php 
 																	if (!empty($image)) {
@@ -532,6 +542,7 @@
 																	}
 																?>
 															  </td>
+															  <td><?php echo $title; ?></td>
 														      <td><?php echo $category_id; ?></td>
 														      <td><?php echo $author_id; ?></td>
 														      <td><?php echo $tags; ?></td>
