@@ -36,7 +36,7 @@
 					// dropdwn wala gula print hobe
 					else{ ?>
 						<li class="dropdown">
-							<a class="dropdown-item dropdown-toggle" href="#">
+							<a class="dropdown-item dropdown-toggle" href="category.php?id=<?php echo $pCat; ?>">
 								<?php echo $pCatName; ?>
 							</a>
 							<ul class="dropdown-menu">
