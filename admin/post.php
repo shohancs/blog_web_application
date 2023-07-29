@@ -99,20 +99,20 @@
 
 														      	?>
 														      </td>
-      <td>
-      	<?php  
-      		$readUser_Sql = "SELECT * FROM users WHERE user_id='$author_id'";
-      		$readUser_Quary = mysqli_query($db, $readUser_Sql);
+														      <td>
+														      	<?php  
+														      		$readUser_Sql = "SELECT * FROM users WHERE user_id='$author_id'";
+														      		$readUser_Quary = mysqli_query($db, $readUser_Sql);
 
-      		while( $row = mysqli_fetch_assoc($readUser_Quary) ){
-      			$auth_id 	 = $row['user_id'];
-      			$auth_name = $row['fullname'];
+														      		while( $row = mysqli_fetch_assoc($readUser_Quary) ){
+														      			$auth_id 	 = $row['user_id'];
+														      			$auth_name = $row['fullname'];
 
-      			echo $auth_name;
-      		}
+														      			echo $auth_name;
+														      		}
 
-      	?>
-      </td>
+														      	?>
+														      </td>
 														      <td><?php echo $tags; ?></td>
 														      <td>
 														      	<?php  
@@ -474,8 +474,8 @@
 									die("mysqli Error!" . mysqli_error($db));
 								}
 							}
+						}
 					}
-				}
 
 					else if ( $do == "Trash" ) {
 						if (isset($_GET['delPostId'])) {
