@@ -2,6 +2,12 @@
 	<nav class="collapse header-mobile-border-top">
 		<ul class="nav nav-pills" id="mainNav">
 
+			<li class="dropdown">
+				<a class="dropdown-item dropdown-toggle" href="index.php">
+					All News
+				</a>
+			</li>
+
 			<?php  
 
 				// Parent Cat
@@ -30,7 +36,7 @@
 					// dropdwn wala gula print hobe
 					else{ ?>
 						<li class="dropdown">
-							<a class="dropdown-item dropdown-toggle" href="category.php?id=<?php echo $pCat; ?>">
+							<a class="dropdown-item dropdown-toggle" href="#">
 								<?php echo $pCatName; ?>
 							</a>
 							<ul class="dropdown-menu">
