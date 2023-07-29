@@ -2,7 +2,7 @@
 	<nav class="collapse header-mobile-border-top">
 		<ul class="nav nav-pills" id="mainNav">
 			<li class="dropdown">
-				<a class="dropdown-item dropdown-toggle" href="index.html">
+				<a class="dropdown-item dropdown-toggle" href="index.php">
 					Home
 				</a>
 			</li>
