@@ -1,8 +1,8 @@
 <aside class="sidebar">
 
-	<form action="search_result.php" method="get">
+	<form action="search_result.php" method="GET">
 		<div class="input-group mb-3 pb-1">
-			<input class="form-control text-1" placeholder="Search..." name="s" id="s" type="text">
+			<input type="text" name="search" id="s" class="form-control text-1" placeholder="Search..." required>
 			<span class="input-group-append">
 				<button type="submit" class="btn btn-dark text-1 p-2"><i class="fas fa-search m-2"></i></button>
 			</span>
