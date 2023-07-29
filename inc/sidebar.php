@@ -29,23 +29,45 @@
 
 					// if ta dropdown chara gula print korebe
 					if ($numOfChild == 0) { ?>
-						<li class="nav-item">
-							<a class="nav-link active" href="category.php?id=<?php echo $pCat; ?>"><?php echo $pCatName; ?> (2)</a>
-						</li>
+
+						<?php  
+							// Sub Category te koida post acea
+							$findParCat_Sql = "SELECT * FROM post WHERE category_id='$pCat' ";
+							$findParCat_Query = mysqli_query($db, $findParCat_Sql);
+							$countParCat = mysqli_num_rows($findParCat_Query);
+							?>
+							<li class="nav-item">
+								<a class="nav-link active" href="category.php?id=<?php echo $pCat; ?>"><?php echo $pCatName; ?> (<?php echo $countParCat; ?>)</a>
+							</li>
+						<?php ?>
+						
 					<?php }
 					
 					// dropdwn wala gula print hobe
 					else{ ?>
-						<li class="nav-item">
-							<a class="nav-link active" href="category.php?id=<?php echo $pCat; ?>"><?php echo $pCatName; ?> (4)</a>
+
+						<?php  
+							// Sub Category te koida post acea
+							$findParCat_Sql = "SELECT * FROM post WHERE category_id='$pCat' ";
+							$findParCat_Query = mysqli_query($db, $findParCat_Sql);
+							$countParCat = mysqli_num_rows($findParCat_Query);
+							?>
+							<li class="nav-item">
+							<a class="nav-link active" href="category.php?id=<?php echo $pCat; ?>"><?php echo $pCatName; ?> (<?php echo $countParCat; ?>)</a>
+						<?php ?>						
 
 							<ul>
 								<?php  
 									while( $row = mysqli_fetch_assoc($readCSql) ){
 										extract($row);
+
+										// Sub Category te koida post acea
+										$findSubCat_Sql = "SELECT * FROM post WHERE category_id='$cCat' ";
+										$findSubCat_Query = mysqli_query($db, $findSubCat_Sql);
+										$countSubCat = mysqli_num_rows($findSubCat_Query);
 										?>
 										
-										<li class="nav-item"><a class="nav-link" href="category.php?id=<?php echo $cCat; ?>"><?php echo $cCatName; ?></a></li>
+										<li class="nav-item"><a class="nav-link" href="category.php?id=<?php echo $cCat; ?>"><?php echo $cCatName; ?> (<?php echo $countSubCat;  ?>)</a></li>
 
 										<?php
 									}
