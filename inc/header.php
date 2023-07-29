@@ -1,5 +1,6 @@
 <?php  
 	ob_start();
+	session_start();
 	include "admin/inc/db.php";
 ?>
 
