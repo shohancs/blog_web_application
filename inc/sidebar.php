@@ -11,20 +11,56 @@
 
 	<h5 class="font-weight-bold pt-4">Categories</h5>
 	<ul class="nav nav-list flex-column mb-5">
-		<li class="nav-item"><a class="nav-link" href="#">Design (2)</a></li>
-		<li class="nav-item">
-			<a class="nav-link active" href="#">Photos (4)</a>
-			<ul>
-				<li class="nav-item"><a class="nav-link" href="#">Animals</a></li>
-				<li class="nav-item"><a class="nav-link active" href="#">Business</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">Sports</a></li>
-				<li class="nav-item"><a class="nav-link" href="#">People</a></li>
-			</ul>
-		</li>
-		<li class="nav-item"><a class="nav-link" href="#">Videos (3)</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Lifestyle (2)</a></li>
-		<li class="nav-item"><a class="nav-link" href="#">Technology (1)</a></li>
+		<?php  
+
+				// Parent Cat
+				$sql = "SELECT cat_id AS 'pCat', cat_name AS 'pCatName' FROM category WHERE is_parent=0 AND status=1 ORDER BY cat_name ASC";
+				$readSql = mysqli_query($db, $sql);
+
+				while ( $row = mysqli_fetch_assoc($readSql) ) {
+					extract($row);
+
+					// Child Cat
+					$sql2 = "SELECT cat_id AS 'cCat', cat_name AS 'cCatName' FROM category WHERE is_parent='$pCat' AND status=1 ORDER BY cat_name ASC";
+					$readCSql = mysqli_query($db, $sql2);
+					$numOfChild = mysqli_num_rows($readCSql);
+
+					// ekhon drop down er bepar separ niye kaj korbo
+
+					// if ta dropdown chara gula print korebe
+					if ($numOfChild == 0) { ?>
+						<li class="nav-item">
+							<a class="nav-link active" href="category.php?id=<?php echo $pCat; ?>"><?php echo $pCatName; ?> (2)</a>
+						</li>
+					<?php }
+					
+					// dropdwn wala gula print hobe
+					else{ ?>
+						<li class="nav-item">
+							<a class="nav-link active" href="category.php?id=<?php echo $pCat; ?>"><?php echo $pCatName; ?> (4)</a>
+
+							<ul>
+								<?php  
+									while( $row = mysqli_fetch_assoc($readCSql) ){
+										extract($row);
+										?>
+										
+										<li class="nav-item"><a class="nav-link" href="category.php?id=<?php echo $cCat; ?>"><?php echo $cCatName; ?></a></li>
+
+										<?php
+									}
+								?>								
+							</ul>
+						</li>
+						
+					<?php }
+					
+				}
+			?>
+		
+		
 	</ul>
+
 	<div class="tabs tabs-dark mb-4 pb-2">
 		<ul class="nav nav-tabs">
 			<li class="nav-item active"><a class="nav-link show active text-1 font-weight-bold text-uppercase" href="#popularPosts" data-toggle="tab">Popular</a></li>
