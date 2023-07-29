@@ -110,13 +110,21 @@
 							$role 					= $row['role'];
 							$status 				= $row['status'];
 
-							if ($_SESSION['email'] == $userEmail && $password == $hassedPass ) {
+							if ($role == 1) {
+								if ($_SESSION['email'] == $userEmail && $password == $hassedPass ) {
 								header("Location: dashboard.php");
+								}
+								else if ($_SESSION['email'] != $userEmail || $password != $hassedPass ) {
+									session_destroy();
+									header("Location: index.php");
+								}
 							}
-							else if ($_SESSION['email'] != $userEmail || $password != $hassedPass ) {
+							else {
 								session_destroy();
 								header("Location: index.php");
 							}
+
+							
 						}
 					}
 					
