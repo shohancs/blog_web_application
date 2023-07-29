@@ -82,10 +82,10 @@
 											</a>
 										</div>
 									
-										<div class="post-date">
+										<div class="post-date" style="margin-top: -2%;"">
 											<!-- <span class="day">10</span> -->
 											<span class="month"><?php echo $post_date; ?></span>
-										</div>
+										</div><br>
 									
 										<div class="post-content">
 									
