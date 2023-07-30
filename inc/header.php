@@ -73,7 +73,7 @@
 								<div class="header-row pr-4">
 									<div class="header-logo">
 										<a href="index.php">
-											<img alt="Porto" width="100" height="48" data-sticky-width="82" data-sticky-height="40" src="assets/img/logo.png">
+											<img alt="Porto" width="200"  data-sticky-width="150" data-sticky-height="40" src="assets/img/logo/logo.png">
 										</a>
 									</div>
 								</div>
