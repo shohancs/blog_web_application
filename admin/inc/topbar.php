@@ -4,12 +4,7 @@
 				<nav class="navbar navbar-expand">
 					<div class="mobile-toggle-menu"><i class='bx bx-menu'></i>
 					</div>
-					<div class="search-bar flex-grow-1">
-						<div class="position-relative search-bar-box">
-							<input type="text" class="form-control search-control" placeholder="Type to search..."> <span class="position-absolute top-50 search-show translate-middle-y"><i class='bx bx-search'></i></span>
-							<span class="position-absolute top-50 search-close translate-middle-y"><i class='bx bx-x'></i></span>
-						</div>
-					</div>
+					
 					<div class="top-menu ms-auto">
 						<ul class="navbar-nav align-items-center">
 							<li class="nav-item mobile-search-icon">
@@ -325,22 +320,51 @@
 					</div>
 					<div class="user-box dropdown">
 						<a class="d-flex align-items-center nav-link dropdown-toggle dropdown-toggle-nocaret" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-							<img src="assets/images/avatars/avatar-2.png" class="user-img" alt="user avatar">
+							<?php  
+								$usersReadsql = "SELECT * FROM users WHERE role=1 AND status=1 ORDER BY fullname ASC";
+										$usersRead = mysqli_query($db, $usersReadsql);
+										
+											while ($row = mysqli_fetch_assoc($usersRead)) {
+												$user_id 	= $row['user_id'];
+												$fullname 	= $row['fullname'];
+												$email 		= $row['email'];
+												$password 	= $row['password'];
+												$phone 		= $row['phone'];
+												$address 	= $row['address'];
+												$role 		= $row['role'];
+												$status 	= $row['status'];
+												$image 		= $row['image'];
+												$join_date 	= $row['join_date'];
+												
+												echo '<img src="assets/images/users/' . $image . '" style="width: 40px;">';
+											}
+							?>
 							<div class="user-info ps-3">
-								<p class="user-name mb-0">Pauline Seitz</p>
+								<?php  
+										$usersReadsql = "SELECT * FROM users WHERE role=1 AND status=1 ORDER BY fullname ASC";
+												$usersRead = mysqli_query($db, $usersReadsql);
+												
+													while ($row = mysqli_fetch_assoc($usersRead)) {
+														$user_id 	= $row['user_id'];
+														$fullname 	= $row['fullname'];
+														$email 		= $row['email'];
+														$password 	= $row['password'];
+														$phone 		= $row['phone'];
+														$address 	= $row['address'];
+														$role 		= $row['role'];
+														$status 	= $row['status'];
+														$image 		= $row['image'];
+														$join_date 	= $row['join_date'];
+														?>
+														<p class="user-name mb-0"><?php echo $fullname; ?></p>													<?php }
+									?>
+								
 								<p class="designattion mb-0"><?php echo $_SESSION['email']; ?></p>
 							</div>
 						</a>
 						<ul class="dropdown-menu dropdown-menu-end">
-							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-user"></i><span>Profile</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class="bx bx-cog"></i><span>Settings</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-dollar-circle'></i><span>Earnings</span></a>
-							</li>
-							<li><a class="dropdown-item" href="javascript:;"><i class='bx bx-download'></i><span>Downloads</span></a>
+							
+							<li><a class="dropdown-item" href="dashboard.php"><i class='bx bx-home-circle'></i><span>Dashboard</span></a>
 							</li>
 							<li>
 								<div class="dropdown-divider mb-0"></div>

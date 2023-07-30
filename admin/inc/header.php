@@ -40,7 +40,7 @@
 	<link rel="stylesheet" href="assets/css/header-colors.css" />
 	<link rel="stylesheet" href="assets/css/custom.css" />
 	<script src="https://kit.fontawesome.com/0c66e46c25.js" crossorigin="anonymous"></script>
-	<title>Rukada - Responsive Bootstrap 5 Admin Template</title>
+	<title>Dashboard | Admin</title>
 
 	<!-- ######### START: CK EDITOR ########## -->
 	<script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>

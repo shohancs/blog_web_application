@@ -69,7 +69,7 @@
 														<tr>
 													      <th scope="row"><?php echo $i; ?></th>
 													      <td><?php echo $cat_name; ?></td>
-													      <td><?php echo $cat_desc; ?></td>
+													      <td><?php echo substr($cat_desc, 0, 20); ?>...</td>
 													      <td>
 													      	<?php  
 																if ($is_parent == 0) { ?>
@@ -144,7 +144,7 @@
 															<tr>
 													      <th scope="row"><?php echo $i; ?></th>
 													      <td> -- <?php echo $cat_name; ?></td>
-													      <td><?php echo $cat_desc; ?></td>
+													      <td><?php echo substr($cat_desc, 0, 20); ?>... </td>
 													      <td>
 													      	<?php  
 																if ($is_parent == 0) { ?>
