@@ -58,6 +58,46 @@
 				}
 			?>
 
+			<!-- For users login or nor -->
+			<?php  
+				if (!empty($_SESSION['user_id'])) { 
+
+					$user_id = $_SESSION['user_id'];
+					$readUId_Sql = "SELECT * FROM users WHERE status=1 AND user_id='$user_id'";
+					$readUId_Query = mysqli_query($db, $readUId_Sql);
+
+					while( $row = mysqli_fetch_assoc($readUId_Query) ) {
+						$user_id 				= $row['user_id'];
+						$fullname 				= $row['fullname'];
+						$_SESSION['email'] 		= $row['email'];
+						$password 				= $row['password'];
+						$role 					= $row['role'];
+						$status 				= $row['status'];
+						?>
+							<li class="dropdown">
+								<a class="dropdown-item dropdown-toggle" href="">
+									<?php echo $fullname; ?>
+								</a>
+								<ul class="dropdown-menu">
+									<?php  
+										while( $row = mysqli_fetch_assoc($readCSql) ){
+											extract($row);
+											?>
+												<li><a class="dropdown-item" href="category.php?id=<?php echo $cCat; ?>"><?php echo $cCatName; ?></a></li>
+											<?php
+										}
+									?>
+								</ul>
+							</li>
+						<?php
+					}
+
+					?>
+					
+				<?php }
+			?>
+			<!-- For users login or nor -->
+
 			
 			
 		</ul>
