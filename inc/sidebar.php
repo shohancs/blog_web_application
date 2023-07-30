@@ -139,6 +139,24 @@
 			</div>
 		</div>
 	</div>
-	<h5 class="font-weight-bold pt-4">About Us</h5>
-	<p>Nulla nunc dui, tristique in semper vel, congue sed ligula. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. Nulla nunc dui, tristique in semper vel. Nam dolor ligula, faucibus id sodales in, auctor fringilla libero. </p>
+	<h5 class="font-weight-bold pt-4">Meta Tags</h5>
+	<p>
+		<?php  
+			$tagSql = "SELECT * FROM post WHERE status=1 ORDER BY post_id DESC";
+			$tagQuery = mysqli_query($db, $tagSql);
+
+			while ( $row = mysqli_fetch_assoc($tagQuery) ) {
+				$post_id 		= $row['post_id'];
+				$tags 			= $row['tags'];
+
+				// eita ekta array, eita string ke benge array te convert kore dive
+				$postTags = explode(',', $tags);
+
+				foreach ($postTags as $tag ) { ?>
+					<span class="badge badge-dark"><a href="details.php?dId=<?php echo $post_id; ?>" style="color: #fff; text-decoration: none;"><?php echo $tag; ?></a></span>
+				<?php }
+			}
+		?>
+		
+	</p>
 </aside>
