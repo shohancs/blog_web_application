@@ -42,6 +42,9 @@
 		<link rel="stylesheet" href="assets/css/theme-elements.css">
 		<link rel="stylesheet" href="assets/css/theme-blog.css">
 		<link rel="stylesheet" href="assets/css/theme-shop.css">
+
+		<!-- FONT AWESOME CDN LINK -->
+		<script src="https://kit.fontawesome.com/0c66e46c25.js" crossorigin="anonymous"></script>
 		
 		<!-- Demo CSS -->
 
@@ -78,29 +81,7 @@
 							<!-- HEADER NAVIGATION lOGO -->
 							
 							<!-- HEADER NAVIGATION lIST ITEM -->
-							<div class="header-column">
-								<div class="header-row">
-									<div class="header-nav header-nav-links justify-content-center">
-										<?php include"inc/navmenu.php"; ?>
-									</div>
-								</div>
-							</div>
-							<!-- HEADER NAVIGATION lIST ITEM -->
-
-							<!-- HEADER NAVIGATION ICON -->
-							<div class="header-column header-column-border-left flex-grow-0 justify-content-center">
-								<div class="header-row pl-4 justify-content-end">
-									<ul class="header-social-icons social-icons d-none d-sm-block social-icons-clean m-0">
-										<li class="social-icons-facebook"><a href="http://www.facebook.com/" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a></li>
-										<li class="social-icons-twitter"><a href="http://www.twitter.com/" target="_blank" title="Twitter"><i class="fab fa-twitter"></i></a></li>
-										<li class="social-icons-linkedin"><a href="http://www.linkedin.com/" target="_blank" title="Linkedin"><i class="fab fa-linkedin-in"></i></a></li>
-									</ul>
-									<button class="btn header-btn-collapse-nav ml-0 ml-sm-3" data-toggle="collapse" data-target=".header-nav-main nav">
-										<i class="fas fa-bars"></i>
-									</button>
-								</div>
-							</div>
-							<!-- HEADER NAVIGATION ICON -->
+							<?php include"inc/navmenu.php"; ?>
 
 							<!-- ########## END: HEADER NAVIGATION ########## -->
 
