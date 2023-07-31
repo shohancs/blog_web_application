@@ -51,5 +51,4 @@
 
 	<!--wrapper-->
 	<div class="wrapper">
-		<?php include"inc/leftmenu.php"; ?>
-		<?php include"inc/topbar.php"; ?>
+		
