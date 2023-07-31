@@ -555,7 +555,16 @@
 
 											<div class="mb-3">
 												<label for="">Image</label>
-												<input type="file" name="image" class="form-control" >
+												<br>
+												<?php 
+													if (!empty($image)) {
+														echo '<img src="assets/images/users/' . $image . '" style="width: 60px;">';
+													}
+													else {
+														echo '<p>No Picture Uploaded!</p>';
+													}
+												?>	
+												<input type="file" name="image" class="form-control">
 											</div>
 
 											<div class="mb-3">
@@ -586,8 +595,41 @@
 							$role 			= mysqli_real_escape_string($db, $_POST['role']);
 							$status 		= mysqli_real_escape_string($db, $_POST['status']);
 
-							// With Password
-							if (!empty($password)) {
+							$image 			= $_FILES['image']['name'];
+							$temp_image 	= $_FILES['image']['tmp_name'];
+
+							// Both for Password and Picture with all data change
+							if (!empty($password) && !empty($image)) {
+								if ($password == $re_password) {
+									$hassedPass = sha1($password);
+
+									// Delete if image already exists
+										$query = "SELECT * FROM users WHERE user_id = '$updateUserId'";
+										$oldImage = mysqli_query($db, $query);
+
+										while ($row = mysqli_fetch_assoc($oldImage)) {
+											$existingImage = $row['image'];
+											unlink("assets/images/users/$img" . $existingImage);
+										}
+
+									$img = rand(1, 9999999). "-" . $image;
+									move_uploaded_file($temp_image, 'assets/images/users/' . $img);
+
+									$updateUserSql = "UPDATE users SET fullname='$fullname', email='$email', password='$hassedPass', phone='$phone', address='$address', role='$role', status='$status', image='$img' WHERE user_id='$updateUserId' ";
+									$updateUserQuery = mysqli_query($db, $updateUserSql);
+
+									if ($updateUserQuery) {
+										header("Location: users.php?do=Manage");
+									}
+									else {
+										die("mysqli Error!" . mysqli_error($db));
+									}
+
+								}
+							}
+
+							// Shudu Password Dibo Image Divo na
+							else if (!empty($password) && empty($image)) {
 								if ($password == $re_password) {
 									$hassedPass = sha1($password);
 
@@ -604,9 +646,36 @@
 								}
 							}
 
-							// Without Password
+
+							// Shudu Image Dibo PASSword Divo na
+							else if (empty($password) && !empty($image)) {
+
+									// Delete if image already exists
+										$query = "SELECT * FROM users WHERE user_id = '$updateUserId'";
+										$oldImage = mysqli_query($db, $query);
+
+										while ($row = mysqli_fetch_assoc($oldImage)) {
+											$existingImage = $row['image'];
+											unlink("assets/images/users/$img" . $existingImage);
+										}
+
+									$img = rand(1, 9999999). "-" . $image;
+									move_uploaded_file($temp_image, 'assets/images/users/' . $img);
+
+								$updateUserSql = "UPDATE users SET fullname='$fullname', email='$email', phone='$phone', address='$address', role='$role', status='$status', image='$img' WHERE user_id='$updateUserId' ";
+								$updateUserQuery = mysqli_query($db, $updateUserSql);
+
+								if ($updateUserQuery) {
+									header("Location: users.php?do=Manage");
+								}
+								else {
+									die("mysqli Error!" . mysqli_error($db));
+								}
+							}
+
+							// Password and Image Kicui divo na
 							else {
-								$updateUserSql = "UPDATE users SET fullname='$fullname', email='$email', password='$hassedPass', phone='$phone', address='$address', role='$role', status='$status' WHERE user_id='$updateUserId' ";
+								$updateUserSql = "UPDATE users SET fullname='$fullname', email='$email', phone='$phone', address='$address', role='$role', status='$status' WHERE user_id='$updateUserId' ";
 								$updateUserQuery = mysqli_query($db, $updateUserSql);
 
 								if ($updateUserQuery) {
