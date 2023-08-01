@@ -162,20 +162,17 @@
 
 					else  if ( $do == "Edit" ) {
 						if (isset($_GET['u_id'])) {
-							$up_id =  $_GET['u_id'];
-							$up_idSql = "SELECT * FROM post WHERE post_id='$up_id'";
-							$up_idQuery = mysqli_query($db, $up_idSql);
+							$up_cmnt =  $_GET['u_id'];
+							$up_cmnt_sql = "SELECT * FROM comments WHERE cmt_id='$up_cmnt'";
+							$up_cmnt_query = mysqli_query($db, $up_cmnt_sql);
 
-							while ($row = mysqli_fetch_assoc($up_idQuery)) {
+							while ($row = mysqli_fetch_assoc($up_cmnt_query)) {
+								$cmt_id 		= $row['cmt_id'];
+								$user_id 		= $row['user_id'];
 								$post_id 		= $row['post_id'];
-								$title 			= $row['title'];
-								$post_desc 		= $row['post_desc'];
-								$image 			= $row['image'];
-								$category_id 	= $row['category_id'];
-								$author_id 		= $row['author_id'];
-								$tags 			= $row['tags'];
+								$comments 		= $row['comments'];
 								$status 		= $row['status'];
-								$post_date 		= $row['post_date'];
+								$cmt_date 		= $row['cmt_date'];
 								?>
 								<!-- Top Icon -->
 						<div class="page-breadcrumb d-none d-sm-flex align-items-center mb-3">
@@ -183,7 +180,7 @@
 							<div class="ps-3">
 								<nav aria-label="breadcrumb">
 									<ol class="breadcrumb mb-0 p-0">
-										<li class="breadcrumb-item"><a href="post.php?do=Manage"><i class="bx bx-home-alt"></i></a>
+										<li class="breadcrumb-item"><a href="comments.php?do=Manage"><i class="bx bx-home-alt"></i></a>
 										</li>
 										<li class="breadcrumb-item active" aria-current="page">Data Table</li>
 									</ol>
@@ -192,7 +189,7 @@
 						</div>
 						<!-- Top Icon -->
 
-						<h6 class="mb-3 text-uppercase">Update Post Information</h6><hr>
+						<h6 class="mb-3 text-uppercase">Update Comments Information</h6><hr>
 
 						<!-- ########## START: MAIN BODY ########## -->
 						<div class="card">
@@ -269,8 +266,8 @@
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
-													<input type="hidden" name="postId" value="<?php echo $post_id; ?>">
-													<input type="submit" name="updatePost" class="btn btn-primary" value="Save Changes">
+													<input type="hidden" name="commentId" value="<?php echo $up_cmnt; ?>">
+													<input type="submit" name="updateComment" class="btn btn-primary" value="Save Changes">
 												</div>
 											</div>
 										</div>
@@ -284,8 +281,8 @@
 					}
 
 					else if ( $do == "Update" ) {
-						if (isset($_POST['updatePost'])) {
-							$postId 		= mysqli_real_escape_string($db, $_POST['postId']);
+						if (isset($_POST['updateComment'])) {
+							$commentId 		= mysqli_real_escape_string($db, $_POST['commentId']);
 							$title 		= mysqli_real_escape_string($db, $_POST['title']);
 							$cate_id 	= mysqli_real_escape_string($db, $_POST['cate_id']);
 							$author_id 	= $_SESSION['user_id'];
