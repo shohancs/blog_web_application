@@ -71,20 +71,6 @@
 														      <th scope="row"><?php echo $i; ?></th>
 														      <td>
 														      	<?php  
-														      		$readUser_Sql = "SELECT * FROM users WHERE user_id='$user_id'";
-														      		$readUser_Quary = mysqli_query($db, $readUser_Sql);
-
-														      		while( $row = mysqli_fetch_assoc($readUser_Quary) ){
-														      			$auth_id 	 = $row['user_id'];
-														      			$auth_name = $row['fullname'];
-
-														      			echo $auth_name;
-														      		}
-
-														      	?>
-														      </td>
-														      <td>
-														      	<?php  
 														      		$readPost_Sql = "SELECT * FROM post WHERE post_id='$post_id'";
 														      		$readPost_Quary = mysqli_query($db, $readPost_Sql);
 
@@ -97,6 +83,21 @@
 
 														      	?>
 														      </td>
+														      <td>
+														      	<?php  
+														      		$readUser_Sql = "SELECT * FROM users WHERE user_id='$user_id'";
+														      		$readUser_Quary = mysqli_query($db, $readUser_Sql);
+
+														      		while( $row = mysqli_fetch_assoc($readUser_Quary) ){
+														      			$auth_id 	 = $row['user_id'];
+														      			$auth_name = $row['fullname'];
+
+														      			echo $auth_name;
+														      		}
+
+														      	?>
+														      </td>
+														      
 														      <td><?php echo substr($comments, 0, 20); ?>...</td>
 														      <td>
 														      	<?php  
@@ -128,7 +129,7 @@
 										                            <div class="modal-content">
 
 										                              <div class="modal-header">
-										                                <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $user_id; ?></span> Trash folder!!</h1>
+										                                <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Move <i class="fa-regular fa-face-frown"></i><br> Trash folder!!</h1>
 
 										                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										                              </div>
@@ -235,7 +236,7 @@
 							$commentUpdate_sql = "UPDATE comments SET  status='$status' WHERE cmt_id='$commentId' ";
 							$commentUpdate_query = mysqli_query($db, $commentUpdate_sql);
 
-							if ($commentsUpdate_query) {
+							if ($commentUpdate_query) {
 								header("Location: comments.php?do=Manage");
 							}
 							else {
@@ -379,7 +380,7 @@
 										                            <div class="modal-content">
 
 										                              <div class="modal-header">
-										                                <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Delete <i class="fa-regular fa-face-frown"></i><br> <span style="color: green;"><?php echo $user_id; ?></span></h1>
+										                                <h1 class="modal-title fs-5" id="exampleModalLabel">Do You Sure?? To Delete Permanently <i class="fa-regular fa-face-frown"></i><br></h1>
 
 										                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 										                              </div>
