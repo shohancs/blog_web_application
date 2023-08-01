@@ -230,9 +230,9 @@
 					else if ( $do == "Update" ) {
 						if (isset($_POST['updateComment'])) {
 							$commentId 		= mysqli_real_escape_string($db, $_POST['commentId']);			
-							$status 	= mysqli_real_escape_string($db, $_POST['status']);
+							$status 		= mysqli_real_escape_string($db, $_POST['status']);
 
-							$commentUpdate_sql = "UPDATE comments SET  status='$status' WHERE cmt_id='$cmt_id' ";
+							$commentUpdate_sql = "UPDATE comments SET  status='$status' WHERE cmt_id='$commentId' ";
 							$commentUpdate_query = mysqli_query($db, $commentUpdate_sql);
 
 							if ($commentsUpdate_query) {
