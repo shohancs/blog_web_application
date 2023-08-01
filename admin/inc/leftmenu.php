@@ -79,6 +79,23 @@
 				</li>				
 				<!-- ######### START: BLOG MANAGEMENT #########  -->
 
+				<!-- ######### START: Comments Management #########  -->
+				<li class="menu-label">Comments Management</li>	
+				<li>
+					<a href="javascript:;" class="has-arrow">
+						<div class="parent-icon"><i class="bx bx-bx bx-comment-detail"></i>
+						</div>
+						<div class="menu-title">Comments</div>
+					</a>
+					<ul>
+						<li> <a href="comments.php?do=Manage"><i class="bx bx-radio-circle"></i>Manage All Comments</a>
+						</li>						
+						<li> <a href="comments.php?do=ManageTrash"><i class="bx bx-radio-circle"></i>Trash Comments</a>
+						</li>						
+					</ul>
+				</li>				
+				<!-- ######### START: Comments Management #########  -->
+
 				
 			</ul>
 			<!--end navigation-->
