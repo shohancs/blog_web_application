@@ -31,8 +31,8 @@
 							<div class="col-lg-12">
 								<!-- ########## START: MAIN BODY ########## -->
 								<div class="card">
-									<div class="card-body" style="box-shadow: 1px 10px 15px #ccc; border-top: 4px solid #08c;; border-radius: 5px; color: #000;">
-
+									<div class="card-body" style="box-shadow: 1px 10px 15px #ccc; border-top: 4px solid #08c;; border-radius: 5px; color: #000; background: #F7F7F7; font-size: 16px;">
+ 
 										<form action="" method="POST" enctype="multipart/form-data">
 											<div class="row">
 												<div class="col-lg-4">

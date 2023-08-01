@@ -28,7 +28,7 @@
 		<section class="py-5">
         <div class="container">
           <div class="row">
-            <div class="col-lg-6 offset-lg-3" style="border-top: 4px solid #08c; padding: 29px 52px 39px; box-shadow: 1px 10px 15px #ccc; border-radius: 5px; color: #000;">
+            <div class="col-lg-6 offset-lg-3" style="border-top: 4px solid #08c; padding: 29px 52px 39px; box-shadow: 1px 10px 15px #ccc; border-radius: 5px; color: #000; background: #F7F7F7; font-size: 16px;">
 
               <form action="" method="POST">
                 <div class="mb-0">
@@ -102,8 +102,8 @@
 								header("Location: index.php");
 							}
 							else {
-		                      header("Location: index.php");
-		                    }
+                header("Location: index.php");
+              }
 
 							
 						}

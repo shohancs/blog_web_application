@@ -83,7 +83,7 @@
 											</a>
 											<ul class="dropdown-menu">
 												<li><a class="dropdown-item" href="user_manage.php?uid=<?php echo $_SESSION['user_id']; ?>">Profile Update</a></li>
-												<li><a class="dropdown-item" href="">Blog Post</a></li>
+												<li><a class="dropdown-item" href="userpost.php">Blog Post</a></li>
 												<li><a class="dropdown-item" href="logout.php">Log Out</a></li>
 											</ul>
 										</li>
