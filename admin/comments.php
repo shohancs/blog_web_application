@@ -194,7 +194,7 @@
 						<!-- ########## START: MAIN BODY ########## -->
 						<div class="card">
 							<div class="card-body">
-								<form action="post.php?do=Update" method="POST" enctype="multipart/form-data">
+								<form action="comments.php?do=Update" method="POST" enctype="multipart/form-data">
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="mb-3">
@@ -229,44 +229,17 @@
 
 					else if ( $do == "Update" ) {
 						if (isset($_POST['updateComment'])) {
-							$commentId 		= mysqli_real_escape_string($db, $_POST['commentId']);
-							$title 		= mysqli_real_escape_string($db, $_POST['title']);
-							$cate_id 	= mysqli_real_escape_string($db, $_POST['cate_id']);
-							$author_id 	= $_SESSION['user_id'];
-							$tags 		= mysqli_real_escape_string($db, $_POST['tags']);
+							$commentId 		= mysqli_real_escape_string($db, $_POST['commentId']);			
 							$status 	= mysqli_real_escape_string($db, $_POST['status']);
-							$post_desc 	= mysqli_real_escape_string($db, $_POST['post_desc']);
 
-							$image 		= $_FILES['image']['name'];
-							$temp_image = $_FILES['image']['tmp_name'];
+							$commentUpdate_sql = "UPDATE comments SET  status='$status' WHERE cmt_id='$cmt_id' ";
+							$commentUpdate_query = mysqli_query($db, $commentUpdate_sql);
 
-							if (!empty($image)) {
-								$img = rand(0, 9999999) . "-" . $image;
-								move_uploaded_file($temp_image, 'assets/images/posts/' . $img);
-
-								$postupdate_sql = "UPDATE post SET title='$title', post_desc='$post_desc', image='$img', category_id='$cate_id', author_id='$author_id', tags='$tags', status='$status' WHERE post_id='$postId' ";
-								$postUpdate_query = mysqli_query($db, $postupdate_sql);
-
-								if ($postUpdate_query) {
-									header("Location: post.php?do=Manage");
-								}
-								else {
-									die("mysqli Error!" . mysqli_error($db));
-								}
+							if ($commentsUpdate_query) {
+								header("Location: comments.php?do=Manage");
 							}
 							else {
-								$img = rand(0, 9999999) . "-" . $image;
-								move_uploaded_file($temp_image, 'assets/images/posts/' . $img);
-
-								$postupdate_sql = "UPDATE post SET title='$title', post_desc='$post_desc', category_id='$cate_id', author_id='$author_id', tags='$tags', status='$status' WHERE post_id='$postId' ";
-								$postUpdate_query = mysqli_query($db, $postupdate_sql);
-
-								if ($postUpdate_query) {
-									header("Location: post.php?do=Manage");
-								}
-								else {
-									die("mysqli Error!" . mysqli_error($db));
-								}
+								die("mysqli Error!" . mysqli_error($db));
 							}
 						}
 					}
