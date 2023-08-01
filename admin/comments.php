@@ -198,71 +198,18 @@
 									<div class="row">
 										<div class="col-lg-4">
 											<div class="mb-3">
-												<label for="">Post Title</label>
-												<input type="text" name="title" class="form-control" required autocomplete="off" autofocus value="<?php echo $title; ?>">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Meta Tags [ Use Comma (,) For Each Tag ]</label>
-												<input type="text" name="tags" class="form-control" required autocomplete="off" autofocus value="<?php echo $tags; ?>">
-											</div>
-
-											<div class="mb-3">
-												<label for="">Category Name</label>
-												<select class="form-select" name="cate_id">
-												  <option value="">Please Select the Category</option>
-												  <?php  
-												  	$sql = "SELECT * FROM category WHERE is_parent=0 AND status=1";
-												  	$read = mysqli_query($db, $sql);
-
-													while ($row = mysqli_fetch_assoc($read)) {
-														$pcat_id 	= $row['cat_id'];
-														$pcat_name 	= $row['cat_name'];
-														?>
-														<option value="<?php echo $pcat_id; ?>"
-															<?php if ( $category_id == $pcat_id ){ echo 'selected'; } ?>
-														><?php echo $pcat_name; ?></option>
-														<?php
-														// for sub Category
-														$sub_sql = "SELECT * FROM category WHERE is_parent=$pcat_id AND status=1";
-													  	$read_sub = mysqli_query($db, $sub_sql);
-
-													  	while ($row = mysqli_fetch_assoc($read_sub)){
-													  		$ccat_id 	= $row['cat_id'];
-															$ccat_name 	= $row['cat_name'];
-																?>
-															<option value="<?php echo $ccat_id; ?>"
-																<?php if ( $category_id == $ccat_id ){ echo 'selected'; } ?>
-															><?php echo " -- " . $ccat_name; ?></option>
-																<?php 
-													  	}
-													}
-												  ?>
-												  
-												</select>
-											</div>											
-
-											<div class="mb-3">
 												<label for="">Status</label>
 												<select class="form-select" name="status" aria-label="">
-												  <option value="1">Please Select the User Status</option>
+												  <option value="1">Please Select the Active Status</option>
 												  <option value="1" <?php if($status == 1){echo "selected";} ?>>Active</option>
 												  <option value="0" <?php if($status == 0){echo "selected";} ?>>InActive</option>
 												</select>
-											</div>
-
-											<div class="mb-3">
-												<label for="">Image</label>
-												<input type="file" name="image" class="form-control" >
 											</div>
 										</div>
 
 										<div class="col-lg-8">
 											
-											<div class="mb-3">
-												<label for="">Description</label>
-												<textarea name="post_desc" class="form-control"  autocomplete="off" autofocus id="editor1" placeholder="category description.."><?php echo $post_desc; ?></textarea>
-											</div>											
+																					
 
 											<div class="mb-3">
 												<div class="d-grid gap-2">
