@@ -386,7 +386,7 @@
 
 										                              <div class="modal-body">
 										                                <div class="modal-btn">
-										                                  <a href="comments.php?do=Delete&delPostId=<?php echo $cmt_id; ?>" class="btn btn-danger me-3">Delete</a>
+										                                  <a href="comments.php?do=Delete&delCmntId=<?php echo $cmt_id; ?>" class="btn btn-danger me-3">Delete</a>
 										                                  <a href="" class="btn btn-success" data-bs-dismiss="modal">Cancel</a>     
 										                                </div>
 										                              </div>
@@ -412,13 +412,13 @@
 					<?php }
 
 					else if ( $do == "Delete" ) {
-						if (isset($_GET['delPostId'])) {
-							$deletePostData = $_GET['delPostId'];
-							$delete_Sql = "DELETE FROM post WHERE post_id='$deletePostData'";
+						if (isset($_GET['delCmntId'])) {
+							$deleteCmntData = $_GET['delCmntId'];
+							$delete_Sql = "DELETE FROM comments WHERE cmt_id='$deleteCmntData'";
 							$delete_query = mysqli_query($db, $delete_Sql);
 
 							if ($delete_query) {
-								header("Location: post.php?do=Manage");
+								header("Location: comments.php?do=Manage");
 							}
 							else {
 								die("mysqli Error!" . mysqli_error($db));
