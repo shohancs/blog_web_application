@@ -513,7 +513,7 @@
 
 										<tbody>
 											<?php  
-												$readComment_sql = "SELECT * FROM comments WHERE status=1 ORDER BY cmt_id DESC";
+												$readComment_sql = "SELECT * FROM comments WHERE status=0 ORDER BY cmt_id DESC";
 												$readComment_query = mysqli_query( $db, $readComment_sql );
 												$countData = mysqli_num_rows($readComment_query);
 
